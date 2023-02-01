@@ -52,10 +52,13 @@ public class Picross extends JFrame{
 		panel.add(b22); panel.add(b23);  
 		panel.add(b24); panel.add(b25);
 		*/
+		
+		JButton[] b = new JButton[25];
+		
 		for(int i = 0;i<9;i++) {
 			
-			JButton b = new JButton();
-			panel.add(b);
+			b[i] = new JButton();
+			panel.add(b[i]);
 		}
 		
 		panel.setBounds(150,150,375,375);

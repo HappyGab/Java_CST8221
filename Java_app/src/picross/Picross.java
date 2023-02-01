@@ -23,7 +23,7 @@ public class Picross extends JFrame{
 		game.setVisible(true);
 		
 
-		System.out.println("sddsaf");
+		
 	}
 
 }

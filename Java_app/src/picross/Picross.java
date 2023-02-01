@@ -1,4 +1,4 @@
-package game;
+package picross;
 
 public class Picross {
 

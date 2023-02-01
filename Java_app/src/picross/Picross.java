@@ -24,6 +24,7 @@ public class Picross extends JFrame{
 		game.setLayout(null);
 		game.setVisible(true);
 		
+
 		JLabel topRight = new JLabel("top right");
 		JLabel top = new JLabel("top ");
 		JLabel right = new JLabel("right");
@@ -60,6 +61,7 @@ public class Picross extends JFrame{
 		bottomRight.setBackground(Color.orange);
 		bottomRight.setOpaque(true);
 		game.add(bottomRight);
+
 	}
 
 }

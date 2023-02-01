@@ -1,9 +1,13 @@
 package picross;
 
-public class Picross {
+import javax.swing.*;
+
+public class Picross extends JFrame{
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+
+		
 
 	}
 

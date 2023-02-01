@@ -22,7 +22,6 @@ public class Picross extends JFrame{
 		game.setLayout(null);
 		game.setVisible(true);
 		
-		//comment
 	}
 
 }

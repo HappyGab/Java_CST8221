@@ -6,22 +6,28 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
+/**
+ * 
+ * @author Gabriel, Maher
+ * 
+ * driver class
+ *
+ */
 public class Picross extends JFrame{
 
 	public static void main(String[] args) {
 		
 		int boardRowsCols = 5; //NEED TO REPLACE WITH VALUE FROM COMBOBOX LATER**********************************
 		
+		//border template
 		Border rowNcolBorder = BorderFactory.createLineBorder(Color.black);
 
-		JFrame game = new JFrame();
-		
+		//main game frame
+		JFrame game = new JFrame();		
 		game.setSize(750,575);
 		
+		//top panel*********************************************************************************************
 		JPanel topPanel = new JPanel();
-		
-		topPanel.setPreferredSize(new Dimension(350,150));
 		
 		topPanel.setLayout(new BorderLayout());
 		
@@ -82,6 +88,9 @@ public class Picross extends JFrame{
 		
 		topPanel.add(top3, BorderLayout.EAST);
 		
+		//end of top panel*********************************************************************
+		
+		//west panel****************************************************************************
 		JPanel WPanel = new JPanel();
 		
 		WPanel.setLayout(new GridLayout(boardRowsCols,1));
@@ -98,7 +107,10 @@ public class Picross extends JFrame{
 		
 		
 		WPanel.setPreferredSize(new Dimension(150,425));
+		//end of west panel*******************************************************************
 		
+		
+		//start of east panel********************************************************************
 		JPanel EPanel = new JPanel();
 		EPanel.setPreferredSize(new Dimension(225,575));
 		
@@ -134,35 +146,43 @@ public class Picross extends JFrame{
 		e2.add(resetButton, BorderLayout.EAST);
 		
 		EPanel.add(e2, BorderLayout.SOUTH);
+		//end of east panel**************************************************************************
 		
 		//CREATES THE GAME BOARD, maybe put in separate function later
-				//******************************************************************************************************
-				JPanel Boardpanel = new JPanel();
-				
-				boardButton[][] b = new boardButton[boardRowsCols][boardRowsCols];
-				 
-				for(int i = 0;i<boardRowsCols;i++) {
-					for(int i2 = 0;i2<boardRowsCols;i2++) {
-						b[i][i2] = new boardButton(i,i2);
-						b[i][i2].addActionListener(new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent e) {
-									
-								boardButton button = (boardButton) e.getSource();
-								
-								int butX = button.getXPosition();
-								int butY = button.getYPosition();
-								
-								System.out.println("You clicked ont the button at position " + butX + "," + butY);
-								controlPanel.append("Clicked on the button at position " + butX + "," + butY + "\n");
-							}
-						});
-						Boardpanel.add(b[i][i2]);
-					}
-				}
-				Boardpanel.setLayout(new GridLayout(boardRowsCols,boardRowsCols));
-				//******************************************************************************************************
+		//******************************************************************************************************
+		JPanel Boardpanel = new JPanel();
 		
+		//2d array of board buttons
+		boardButton[][] b = new boardButton[boardRowsCols][boardRowsCols];
+		 
+		//nested loops to create the buttons
+		for(int i = 0;i<boardRowsCols;i++) {
+			for(int i2 = 0;i2<boardRowsCols;i2++) {
+				b[i][i2] = new boardButton(i,i2);
+				
+				//listens to mouse clicks
+				b[i][i2].addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+							
+						boardButton button = (boardButton) e.getSource();
+						
+						int butX = button.getXPosition();
+						int butY = button.getYPosition();
+						
+						//prints correct message to the console and control panel
+						System.out.println("You clicked ont the button at position " + butX + "," + butY);
+						controlPanel.append("Clicked on the button at position " + butX + "," + butY + "\n");
+					}
+				});
+				//adds the buttons to the game board
+				Boardpanel.add(b[i][i2]);
+			}
+		}
+		Boardpanel.setLayout(new GridLayout(boardRowsCols,boardRowsCols));
+		//******************************************************************************************************
+
+		//adds the components to the game gui and makes it visible
 		game.add(topPanel,BorderLayout.NORTH);
 		game.add(WPanel,BorderLayout.WEST);
 		game.add(EPanel,BorderLayout.EAST);
@@ -172,17 +192,27 @@ public class Picross extends JFrame{
 
 	}
 	 
+	/**
+	 * 
+	 * @author Gabriel, Maher
+	 * 
+	 * This class extends JButton, we needed to add the x and y coordinates
+	 *
+	 */
 	public static class boardButton extends JButton{
 		
+		//x and y coords
 		private int xPosition;
 		private int yPosition;
 		
+		//constructor
 		public boardButton(int x, int y) {
 			
 			this.xPosition = x + 1;
 			this.yPosition = y + 1;
 		}
 		
+		//setters and getters*****************
 		public int getXPosition() {
 			return xPosition;
 		}
@@ -195,6 +225,7 @@ public class Picross extends JFrame{
 		public void setYPosition(int y) {
 			this.yPosition = y;
 		}
+		//************************************
 	}
 
 }

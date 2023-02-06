@@ -13,35 +13,6 @@ public class Picross extends JFrame{
 		
 		game.setSize(750,575);
 		
-		//CREATES THE GAME BOARD, maybe put in separate function later
-		//******************************************************************************************************
-		JPanel Boardpanel = new JPanel();
-		
-		int boardRowsCols = 5; //NEED TO REPLACE WITH VALUE FROM COMBOBOX LATER**********************************
-		
-		boardButton[][] b = new boardButton[boardRowsCols][boardRowsCols];
-		 
-		for(int i = 0;i<boardRowsCols;i++) {
-			for(int i2 = 0;i2<boardRowsCols;i2++) {
-				b[i][i2] = new boardButton(i,i2);
-				b[i][i2].addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-							
-						boardButton button = (boardButton) e.getSource();
-						
-						int butX = button.getXPosition();
-						int butY = button.getYPosition();
-						
-						System.out.println("You clicked ont the button at position " + butX + "," + butY);
-					}
-				});
-				Boardpanel.add(b[i][i2]);
-			}
-		}
-		Boardpanel.setLayout(new GridLayout(boardRowsCols,boardRowsCols));
-		//******************************************************************************************************
-		
 		JPanel topPanel = new JPanel();
 		
 		topPanel.setPreferredSize(new Dimension(350,150));
@@ -68,10 +39,53 @@ public class Picross extends JFrame{
 		WPanel.setPreferredSize(new Dimension(150,425));
 		
 		JPanel EPanel = new JPanel();
-		EPanel.setBackground(Color.blue);
 		EPanel.setPreferredSize(new Dimension(225,575));
 		
+		JTextArea controlPanel = new JTextArea();
+		controlPanel.setEditable(false);
 		
+		JScrollPane controlPanelScroll = new JScrollPane(controlPanel);
+		EPanel.add(controlPanelScroll);
+		controlPanelScroll.setPreferredSize(new Dimension(225,300));
+		controlPanelScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		JPanel e2 = new JPanel();
+
+		String[] boardSizes = {"5x5","10x10","15x15","20x20"};
+		JComboBox<String> boardSizesBox = new JComboBox<String>(boardSizes);
+		e2.add(boardSizesBox);
+		
+		EPanel.add(e2, BorderLayout.SOUTH);
+		
+		//CREATES THE GAME BOARD, maybe put in separate function later
+				//******************************************************************************************************
+				JPanel Boardpanel = new JPanel();
+				
+				int boardRowsCols = 5; //NEED TO REPLACE WITH VALUE FROM COMBOBOX LATER**********************************
+				
+				boardButton[][] b = new boardButton[boardRowsCols][boardRowsCols];
+				 
+				for(int i = 0;i<boardRowsCols;i++) {
+					for(int i2 = 0;i2<boardRowsCols;i2++) {
+						b[i][i2] = new boardButton(i,i2);
+						b[i][i2].addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+									
+								boardButton button = (boardButton) e.getSource();
+								
+								int butX = button.getXPosition();
+								int butY = button.getYPosition();
+								
+								System.out.println("You clicked ont the button at position " + butX + "," + butY);
+								controlPanel.append("Clicked on the button at position " + butX + "," + butY + "\n");
+							}
+						});
+						Boardpanel.add(b[i][i2]);
+					}
+				}
+				Boardpanel.setLayout(new GridLayout(boardRowsCols,boardRowsCols));
+				//******************************************************************************************************
 		
 		game.add(topPanel,BorderLayout.NORTH);
 		game.add(WPanel,BorderLayout.WEST);

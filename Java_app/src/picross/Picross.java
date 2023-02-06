@@ -1,6 +1,8 @@
 package picross;
 
 import javax.swing.*;
+import javax.swing.border.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,6 +10,10 @@ import java.awt.event.*;
 public class Picross extends JFrame{
 
 	public static void main(String[] args) {
+		
+		int boardRowsCols = 5; //NEED TO REPLACE WITH VALUE FROM COMBOBOX LATER**********************************
+		
+		Border rowNcolBorder = BorderFactory.createLineBorder(Color.black);
 
 		JFrame game = new JFrame();
 		
@@ -22,20 +28,57 @@ public class Picross extends JFrame{
 		JPanel top1 = new JPanel();
 		top1.setBackground(Color.red);
 		top1.setPreferredSize(new Dimension(150,150));
+		
+		ImageIcon image=new ImageIcon("picrossLogo.png");
+        top1.add(new JLabel(image));
+        
 		topPanel.add(top1, BorderLayout.WEST);
 		
 		JPanel top2 = new JPanel();
-		top2.setBackground(Color.orange);
 		top2.setPreferredSize(new Dimension(375,150));
+		
+		top2.setLayout(new GridLayout(1,boardRowsCols));
+		
+		JLabel[] boardCol = new JLabel[boardRowsCols];
+		
+		for(int i = 0;i<boardRowsCols;i++) {
+			
+			boardCol[i] = new JLabel("Column " + (i+1));
+			boardCol[i].setBorder(rowNcolBorder);
+			top2.add(boardCol[i]);
+		}
+		
 		topPanel.add(top2, BorderLayout.CENTER);
 		
 		JPanel top3 = new JPanel();
-		top3.setBackground(Color.pink);
 		top3.setPreferredSize(new Dimension(225,150));
+		
+		top3.setLayout(new BorderLayout());
+		
+		JLabel scoreTracker = new JLabel("score tracker placeholder");
+		
+		JRadioButton markButton = new JRadioButton("mark");
+		
+		top3.add(scoreTracker, BorderLayout.NORTH);
+		top3.add(markButton, BorderLayout.SOUTH);
+		
 		topPanel.add(top3, BorderLayout.EAST);
 		
 		JPanel WPanel = new JPanel();
-		WPanel.setBackground(Color.green);
+		
+		WPanel.setLayout(new GridLayout(boardRowsCols,1));
+		
+		JLabel[] boardRow = new JLabel[boardRowsCols];
+		
+		for(int i = 0;i<boardRowsCols;i++) {
+			
+			boardRow[i] = new JLabel("Row " + (i+1));
+			boardRow[i].setBorder(rowNcolBorder);
+			WPanel.add(boardCol[i]);
+		}
+		
+		
+		
 		WPanel.setPreferredSize(new Dimension(150,425));
 		
 		JPanel EPanel = new JPanel();
@@ -77,8 +120,6 @@ public class Picross extends JFrame{
 		//CREATES THE GAME BOARD, maybe put in separate function later
 				//******************************************************************************************************
 				JPanel Boardpanel = new JPanel();
-				
-				int boardRowsCols = 5; //NEED TO REPLACE WITH VALUE FROM COMBOBOX LATER**********************************
 				
 				boardButton[][] b = new boardButton[boardRowsCols][boardRowsCols];
 				 

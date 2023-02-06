@@ -74,7 +74,7 @@ public class Picross extends JFrame{
 			
 			boardRow[i] = new JLabel("Row " + (i+1));
 			boardRow[i].setBorder(rowNcolBorder);
-			WPanel.add(boardCol[i]);
+			WPanel.add(boardRow[i]);
 		}
 		
 		

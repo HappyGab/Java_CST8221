@@ -29,26 +29,30 @@ public class Picross extends JFrame{
 		//top panel*********************************************************************************************
 		JPanel topPanel = new JPanel();
 		
-		topPanel.setLayout(new BorderLayout());
+		topPanel.setLayout(new BorderLayout()); //creates a borderLayout for the top panel
 		
-		JPanel top1 = new JPanel();
-		top1.setLayout(new BorderLayout());
-		top1.setPreferredSize(new Dimension(150,150));
+		JPanel top1 = new JPanel();   
+		top1.setLayout(new BorderLayout());  //creates a borderLayer for left side of top panel  
+		top1.setPreferredSize(new Dimension(150,150));//sets the dimensions for left side of top panel  
 		
-		ImageIcon image=new ImageIcon("picrossLogo.png");
+		ImageIcon image=new ImageIcon("picrossLogo.png"); //opens the image
 		
-		String[] languages = {"English","Français"};
-		JComboBox<String> languagesBox = new JComboBox<String>(languages);
+		String[] languages = {"English","Français"}; 
+		JComboBox<String> languagesBox = new JComboBox<String>(languages); //creates combo box with languages options
 		
-		JButton helpButton = new JButton("Help");
-		helpButton.addActionListener(new ActionListener() {
+		JButton helpButton = new JButton("Help");  //creates a button with help label on it 
+		helpButton.addActionListener(new ActionListener() { //listens to mouse clicks
 			@Override
+			/**
+			 * If the help button get clicked, it displays a message 
+			 * @param e
+			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				System.out.println("You clicked ont the help button");		
 			}
 		});
-		helpButton.setPreferredSize(new Dimension(15,15));
+		//helpButton.setPreferredSize(new Dimension(15,15)); //sets help button dimensions 
 		
 		top1.add(helpButton, BorderLayout.CENTER);
 		top1.add(languagesBox, BorderLayout.SOUTH);

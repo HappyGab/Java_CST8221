@@ -15,12 +15,12 @@ public class Picross extends JFrame{
 		
 		//CREATES THE GAME BOARD, maybe put in separate function later
 		//******************************************************************************************************
-		JPanel panel = new JPanel();
+		JPanel Boardpanel = new JPanel();
 		
 		int boardRowsCols = 5; //NEED TO REPLACE WITH VALUE FROM COMBOBOX LATER**********************************
 		
 		boardButton[][] b = new boardButton[boardRowsCols][boardRowsCols];
-		
+		 
 		for(int i = 0;i<boardRowsCols;i++) {
 			for(int i2 = 0;i2<boardRowsCols;i2++) {
 				b[i][i2] = new boardButton(i,i2);
@@ -36,24 +36,48 @@ public class Picross extends JFrame{
 						System.out.println("You clicked ont the button at position " + butX + "," + butY);
 					}
 				});
-				panel.add(b[i][i2]);
+				Boardpanel.add(b[i][i2]);
 			}
 		}
-		panel.setLayout(new GridLayout(boardRowsCols,boardRowsCols));
+		Boardpanel.setLayout(new GridLayout(boardRowsCols,boardRowsCols));
 		//******************************************************************************************************
 		
+		JPanel topPanel = new JPanel();
 		
+		topPanel.setPreferredSize(new Dimension(350,150));
 		
-		panel.setBounds(150,150,375,375);
+		JPanel top1 = new JPanel();
+		top1.setBackground(Color.red);
+		top1.setPreferredSize(new Dimension(150,150));
+		topPanel.add(top1, BorderLayout.WEST);
 		
+		JPanel top2 = new JPanel();
+		top2.setBackground(Color.orange);
+		top2.setPreferredSize(new Dimension(375,150));
+		topPanel.add(top2, BorderLayout.CENTER);
 		
-		game.add(panel);
+		JPanel top3 = new JPanel();
+		top3.setBackground(Color.pink);
+		top3.setPreferredSize(new Dimension(225,150));
+		topPanel.add(top3, BorderLayout.EAST);
 		
-		game.setLayout(null);
+		JPanel WPanel = new JPanel();
+		WPanel.setBackground(Color.green);
+		WPanel.setPreferredSize(new Dimension(150,425));
+		
+		JPanel EPanel = new JPanel();
+		EPanel.setBackground(Color.blue);
+		EPanel.setPreferredSize(new Dimension(225,575));
+		
+		game.add(topPanel,BorderLayout.NORTH);
+		game.add(WPanel,BorderLayout.WEST);
+		game.add(EPanel,BorderLayout.EAST);
+		game.add(Boardpanel,BorderLayout.CENTER);
+		
 		game.setVisible(true);
 
 	}
-	
+	 
 	public static class boardButton extends JButton{
 		
 		private int xPosition;

@@ -50,10 +50,27 @@ public class Picross extends JFrame{
 		controlPanelScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		JPanel e2 = new JPanel();
+		
+		e2.setLayout(new BorderLayout());
 
 		String[] boardSizes = {"5x5","10x10","15x15","20x20"};
 		JComboBox<String> boardSizesBox = new JComboBox<String>(boardSizes);
-		e2.add(boardSizesBox);
+		
+		JButton resetButton = new JButton("RESET");
+		resetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println("You clicked ont the reset button");
+				controlPanel.append("Clicked on the reset button\n");				
+			}
+		});
+		
+		JLabel timerLabel = new JLabel("Placeholder for timer");
+		
+		e2.add(timerLabel, BorderLayout.NORTH);
+		e2.add(boardSizesBox, BorderLayout.WEST);
+		e2.add(resetButton, BorderLayout.EAST);
 		
 		EPanel.add(e2, BorderLayout.SOUTH);
 		

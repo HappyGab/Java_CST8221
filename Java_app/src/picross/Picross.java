@@ -46,6 +46,8 @@ public class Picross extends JFrame{
 		
 		topPanel.setPreferredSize(new Dimension(350,150));
 		
+		topPanel.setLayout(new BorderLayout());
+		
 		JPanel top1 = new JPanel();
 		top1.setBackground(Color.red);
 		top1.setPreferredSize(new Dimension(150,150));
@@ -68,6 +70,8 @@ public class Picross extends JFrame{
 		JPanel EPanel = new JPanel();
 		EPanel.setBackground(Color.blue);
 		EPanel.setPreferredSize(new Dimension(225,575));
+		
+		
 		
 		game.add(topPanel,BorderLayout.NORTH);
 		game.add(WPanel,BorderLayout.WEST);

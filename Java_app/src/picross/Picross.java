@@ -26,13 +26,31 @@ public class Picross extends JFrame{
 		topPanel.setLayout(new BorderLayout());
 		
 		JPanel top1 = new JPanel();
-		top1.setBackground(Color.red);
+		top1.setLayout(new BorderLayout());
 		top1.setPreferredSize(new Dimension(150,150));
 		
 		ImageIcon image=new ImageIcon("picrossLogo.png");
-        top1.add(new JLabel(image));
+		
+		String[] languages = {"English","Français"};
+		JComboBox<String> languagesBox = new JComboBox<String>(languages);
+		
+		JButton helpButton = new JButton("Help");
+		helpButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println("You clicked ont the help button");		
+			}
+		});
+		helpButton.setPreferredSize(new Dimension(15,15));
+		
+		top1.add(helpButton, BorderLayout.CENTER);
+		top1.add(languagesBox, BorderLayout.SOUTH);
+        top1.add(new JLabel(image), BorderLayout.NORTH);
         
 		topPanel.add(top1, BorderLayout.WEST);
+		
+		
 		
 		JPanel top2 = new JPanel();
 		top2.setPreferredSize(new Dimension(375,150));

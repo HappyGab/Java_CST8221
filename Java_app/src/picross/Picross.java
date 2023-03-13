@@ -17,6 +17,14 @@ public class Picross extends JFrame{
 
 	public static void main(String[] args) {
 		
+		GameView gameView = new GameView();
+		
+		gameView.configureNorthPanel();
+		gameView.configureEastPanel();
+		gameView.configureWestPanel();
+		gameView.createGame();
+		
+		/*
 		int boardRowsCols = 5; //NEED TO REPLACE WITH VALUE FROM COMBOBOX LATER**********************************
 		
 		//border template
@@ -46,7 +54,7 @@ public class Picross extends JFrame{
 			/**
 			 * If the help button get clicked, it displays a message 
 			 * @param e
-			 */
+			 *
 			public void actionPerformed(ActionEvent e) {
 				
 				System.out.println("You clicked ont the help button");		
@@ -193,7 +201,7 @@ public class Picross extends JFrame{
 		game.add(Boardpanel,BorderLayout.CENTER);
 		
 		game.setVisible(true);
-
+		*/
 	}
 	 
 	/**

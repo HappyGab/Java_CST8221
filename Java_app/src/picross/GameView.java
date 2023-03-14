@@ -189,4 +189,20 @@ public class GameView extends JFrame{
 		
 		this.setVisible(true);
 	}
+<<<<<<< Updated upstream
 }
+=======
+	
+	
+	
+	public void addTimerListener(ActionListener listener) {
+
+		timer = new Timer(1000, listener );
+		timer.start();
+		
+		
+		
+	}
+//
+}
+>>>>>>> Stashed changes

@@ -96,6 +96,19 @@ public class GameView extends JFrame{
 		eastPanel.add(eastSouth, BorderLayout.SOUTH);
 	}
 	
+	public void configureCenterPanel(int boardSize) {
+		
+		// game board ****************************************************************
+		centerPanel.setLayout(new GridLayout(boardSize,boardSize));
+		JButton[][] b = new JButton[boardSize][boardSize];
+		for (int i=0;i<boardSize;i++) {
+			for(int i2=0;i2<boardSize;i2++) {
+				b[i][i2] = new JButton();
+				centerPanel.add(b[i][i2]);
+			}
+		}
+	}
+	
 	public void createGame() {
 		
 		game.setSize(750,575);
@@ -104,6 +117,7 @@ public class GameView extends JFrame{
 		game.add(northPanel, BorderLayout.NORTH);
 		game.add(westPanel, BorderLayout.WEST);
 		game.add(eastPanel, BorderLayout.EAST);
+		game.add(centerPanel, BorderLayout.CENTER);
 		
 		game.setVisible(true);
 	}

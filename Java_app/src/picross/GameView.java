@@ -24,8 +24,16 @@ public class GameView extends JFrame{
 	static JTextArea controlPanel = new JTextArea();
 	static int boardSize = 5;
 	private static JButton b[][] = new JButton[boardSize][boardSize];
-	private static JButton resetButton = new JButton("RESET");
-	private static JLabel timerLabel = new JLabel(); 
+	 static JButton resetButton = new JButton("RESET");
+	
+	//timer************************************************************************
+    static JLabel timerLabel = new JLabel("00:00"); 
+    Timer timer; 
+    int second; 
+    int minutes; 
+    
+    
+    
 	static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
 	static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
 	
@@ -192,24 +200,13 @@ public class GameView extends JFrame{
 	
 	
 	
-	public void timer(ActionListener listener) {
-		
-		Timer timer = new Timer(1000, listener ) {
-			public void actionPerformed(ActionEvent e) {
-				
-				int second = 0;
-				second ++; 
-				
-				timerLabel.setText("" + second);
-				
-				
-			}
-			
-			
-			
-		}; 
+	public void addTimerListener(ActionListener listener) {
+
+		timer = new Timer(1000, listener );
 		timer.start();
 		
 		
+		
 	}
+
 }

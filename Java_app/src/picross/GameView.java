@@ -206,15 +206,9 @@ public class GameView extends JFrame{
 		
 	}
 	
-	
-	
 	public void addTimerListener(ActionListener listener) {
 
 		timer = new Timer(1000, listener );
 		timer.start();
-		
-		
-		
 	}
-
 }

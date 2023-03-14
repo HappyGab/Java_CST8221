@@ -81,22 +81,15 @@ public class GameController  {
 			String dMinute; 
 			
 			gameView.second ++;
-			
-			
-			
+		
 			if (gameView.second==60) {
 				gameView.second = 0;
 				gameView.minutes++;
-				
 			}
 			
 			dSecond = format.format(gameView.second); 
 			dMinute = format.format(gameView.minutes);
 			gameView.timerLabel.setText("" + dMinute +":" + dSecond);
-			
-			
-			
-		
 		}
 	}
 }

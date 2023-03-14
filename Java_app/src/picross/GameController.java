@@ -66,6 +66,8 @@ public class GameController  {
 			gameView.configureCenterPanel();
 			gameView.configureNorthPanel(); 
 			gameView.configureWestPanel();
+			String newGame = gameModel.randomGame();
+			System.out.println(newGame);
 			resetGame();
 			gameView.updateComponents();
 		}	

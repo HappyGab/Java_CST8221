@@ -7,16 +7,18 @@ import javax.swing.border.*;
 
 public class GameView extends JFrame{
 	
-	static JFrame game = new JFrame();
+	private static JFrame game = new JFrame();
 	
-	static JPanel northPanel = new JPanel();
-	static JPanel westPanel = new JPanel();
-	static JPanel eastPanel = new JPanel();
+	// game components ***************************************************************
+	private static JPanel northPanel = new JPanel();
+	private static JPanel westPanel = new JPanel();
+	private static JPanel eastPanel = new JPanel();
+	private static JPanel centerPanel = new JPanel();
 	
 
 	Border labelBorder = BorderFactory.createLineBorder(Color.black);
 	
-	public void configureNorthPanel() {
+	public void configureNorthPanel(int boardSize) {
 		
 		northPanel.setLayout(new BorderLayout());
 		
@@ -29,6 +31,14 @@ public class GameView extends JFrame{
 		// Columns info panel ********************************************************
 		JPanel topCenter = new JPanel();
 		topCenter.setPreferredSize(new Dimension(375,150));
+		topCenter.setLayout(new GridLayout(1,boardSize));
+		JLabel[] columnsInfo = new JLabel[boardSize];
+		for(int i=0;i<boardSize;i++) {
+			
+			columnsInfo[i] = new JLabel("column " + (i+1));
+			columnsInfo[i].setBorder(labelBorder);
+			topCenter.add(columnsInfo[i]);
+		}
 		
 		// Mark button - score *******************************************************
 		JPanel topEast = new JPanel();
@@ -46,10 +56,17 @@ public class GameView extends JFrame{
 		
 	}
 	
-	public void configureWestPanel() {
+	public void configureWestPanel(int boardSize) {
 		
-		// Columns info panel ********************************************************
+		// Rows info panel ********************************************************
 		westPanel.setPreferredSize(new Dimension(150,425));
+		westPanel.setLayout(new GridLayout(boardSize, 1));
+		JLabel[] rowsInfo = new JLabel[boardSize];
+		for(int i=0;i<boardSize;i++) {
+			rowsInfo[i] = new JLabel("row " + (i+1));
+			rowsInfo[i].setBorder(labelBorder);
+			westPanel.add(rowsInfo[i]);
+		}
 	}
 	
 	public void configureEastPanel() {

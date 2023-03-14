@@ -19,9 +19,9 @@ public class Picross extends JFrame{
 		
 		GameView gameView = new GameView();
 		
-		gameView.configureNorthPanel();
+		gameView.configureNorthPanel(5);
 		gameView.configureEastPanel();
-		gameView.configureWestPanel();
+		gameView.configureWestPanel(5);
 		gameView.createGame();
 		
 		/*

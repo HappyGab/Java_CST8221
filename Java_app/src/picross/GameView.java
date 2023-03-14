@@ -11,8 +11,6 @@ import javax.swing.border.*;
 
 public class GameView extends JFrame{
 	
-	private static JFrame game = new JFrame();
-	
 	// game components ***************************************************************
 	private static JPanel northPanel = new JPanel();
 	private static JPanel westPanel = new JPanel();
@@ -37,7 +35,9 @@ public class GameView extends JFrame{
 	static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
 	static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
 	
-	public static void configureNorthPanel() {
+	public void configureNorthPanel() {
+		
+		northPanel.removeAll();
 		
 		northPanel.setLayout(new BorderLayout());
 		
@@ -75,7 +75,9 @@ public class GameView extends JFrame{
 		
 	}
 	
-	public static void configureWestPanel() {
+	public void configureWestPanel() {
+		
+		westPanel.removeAll();
 		
 		// Rows info panel ********************************************************
 		westPanel.setPreferredSize(new Dimension(150,425));
@@ -88,7 +90,7 @@ public class GameView extends JFrame{
 		}
 	}
 	
-	public static void configureEastPanel() {
+	public void configureEastPanel() {
 		
 		eastPanel.setPreferredSize(new Dimension(225, 575));
 		
@@ -133,7 +135,7 @@ public class GameView extends JFrame{
 			case 2:
 				size = 15;
 				break;
-			case 20:
+			case 3:
 				size = 20;
 				break;
 		}
@@ -143,15 +145,16 @@ public class GameView extends JFrame{
 	
 	public void setboardSize(int size) {
 		
-		GameView.boardSize = size;
-		GameView.b = new JButton[size][size];
+		boardSize = size;
+		b = new JButton[size][size];
 	}
 	
 	public void configureCenterPanel() {
 		
 		// game board ****************************************************************
+		centerPanel.removeAll();
 		centerPanel.setLayout(new GridLayout(boardSize,boardSize));
-		//JButton[][] b = new JButton[boardSize][boardSize];
+		System.out.println(boardSize);
 		for (int i=0;i<boardSize;i++) {
 			for(int i2=0;i2<boardSize;i2++) {
 				b[i][i2] = new JButton();
@@ -170,14 +173,22 @@ public class GameView extends JFrame{
 		}
 	}
 	
+	public JButton[][] getButtons(){
+		return b;
+	}
+	
 	public void addToControlPanel(String text) {
 		
 		controlPanel.append(text + "\n");
 	}
 	
-	public void setBoardSize(int size) {
+	public void updateComponents() {
 		
-		GameView.boardSize = size;
+		this.add(centerPanel, BorderLayout.CENTER);
+		this.add(northPanel, BorderLayout.NORTH);
+		this.add(westPanel, BorderLayout.WEST);
+		this.add(eastPanel, BorderLayout.EAST);
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
 	public void createGame() {
@@ -186,15 +197,12 @@ public class GameView extends JFrame{
 		configureNorthPanel();
 		configureEastPanel();
 		
-		game.setSize(750,575);
-		game.setResizable(false);
+		updateComponents();
 		
-		game.add(northPanel, BorderLayout.NORTH);
-		game.add(westPanel, BorderLayout.WEST);
-		game.add(eastPanel, BorderLayout.EAST);
-		game.add(centerPanel, BorderLayout.CENTER);
+		this.setSize(750,575);
+		this.setResizable(false);		
 		
-		game.setVisible(true);
+		this.setVisible(true);
 		
 	}
 	

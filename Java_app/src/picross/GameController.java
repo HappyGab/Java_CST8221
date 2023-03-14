@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.text.DecimalFormat;
 
 
+import javax.swing.JButton;
+
 public class GameController  {
 
 	GameModel gameModel;
@@ -20,15 +22,37 @@ public class GameController  {
 		this.gameView.addTimerListener(new TimerListener());
 	}
 	
+	private void resetGame() {
+		
+		this.gameView.addGameListener(new GameListener());
+	}
+	
 	class GameListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			gameView.addToControlPanel("pressed");
-			System.out.println("y");
+			JButton b[][] = gameView.getButtons();
+			
+			JButton bClicked = (JButton) e.getSource();
+			
+			int bX = -1;
+			int bY = -1;
+			
+			for (int i=0;i<b.length;i++) {
+				for (int i2=0;i2<b[i].length;i2++) {
+					if (b[i][i2] == bClicked) {
+						bX = i;
+						bY = i2;
+						break;
+					}
+				}
+			}
+			bX++;
+			bY++;
+				
+			gameView.addToControlPanel("pressed at " + bX + "," + bY);
 		}
-		
 	}
 	
 	class ResetListener implements ActionListener{
@@ -38,45 +62,42 @@ public class GameController  {
 			
 			int size = gameView.getSizeFromBox();
 			gameView.setboardSize(size);
-			
-			
+			gameModel.setBoardSize(size);
+			gameView.configureCenterPanel();
+			gameView.configureNorthPanel(); 
+			gameView.configureWestPanel();
+			resetGame();
+			gameView.updateComponents();
 		}	
+	}	
 		
-		
-	}
-		
-		class TimerListener implements ActionListener{
+	class TimerListener implements ActionListener{
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				DecimalFormat format = new DecimalFormat("00"); 
-				String dSecond; 
-				String dMinute; 
-				
-				gameView.second ++;
-				
-				
-				
-				if (gameView.second==60) {
-					gameView.second = 0;
-					gameView.minutes++;
-					
-				}
-				
-				dSecond = format.format(gameView.second); 
-				dMinute = format.format(gameView.minutes);
-				gameView.timerLabel.setText("" + dMinute +":" + dSecond);
-			    
-				
-				
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			
-			}	
+			DecimalFormat format = new DecimalFormat("00"); 
+			String dSecond; 
+			String dMinute; 
+			
+			gameView.second ++;
+			
+			
+			
+			if (gameView.second==60) {
+				gameView.second = 0;
+				gameView.minutes++;
+				
+			}
+			
+			dSecond = format.format(gameView.second); 
+			dMinute = format.format(gameView.minutes);
+			gameView.timerLabel.setText("" + dMinute +":" + dSecond);
+			
+			
+			
 		
-		
-		
+		}
 	}
-	
-
 }
 

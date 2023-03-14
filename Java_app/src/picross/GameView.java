@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
 import java.util.Date;
-
+ 
 import javax.swing.*;
 import javax.swing.border.*;
-//hello
+//hi
 public class GameView extends JFrame{
 	
 	// game components ***************************************************************

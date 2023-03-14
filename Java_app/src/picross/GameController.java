@@ -3,6 +3,8 @@ package picross;
 import java.awt.*;
 import java.awt.event.*;
 
+import javax.swing.JButton;
+
 public class GameController  {
 
 	GameModel gameModel;
@@ -27,8 +29,26 @@ public class GameController  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			gameView.addToControlPanel("pressed");
-			System.out.println("y");
+			JButton b[][] = gameView.getButtons();
+			
+			JButton bClicked = (JButton) e.getSource();
+			
+			int bX = -1;
+			int bY = -1;
+			
+			for (int i=0;i<b.length;i++) {
+				for (int i2=0;i2<b[i].length;i2++) {
+					if (b[i][i2] == bClicked) {
+						bX = i;
+						bY = i2;
+						break;
+					}
+				}
+			}
+			bX++;
+			bY++;
+				
+			gameView.addToControlPanel("pressed at " + bX + "," + bY);
 		}
 	}
 	
@@ -39,8 +59,9 @@ public class GameController  {
 			
 			int size = gameView.getSizeFromBox();
 			gameView.setboardSize(size);
+			gameModel.setBoardSize(size);
 			gameView.configureCenterPanel();
-			gameView.configureNorthPanel();
+			gameView.configureNorthPanel(); 
 			gameView.configureWestPanel();
 			resetGame();
 			gameView.updateComponents();

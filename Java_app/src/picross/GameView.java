@@ -158,6 +158,10 @@ public class GameView extends JFrame{
 		}
 	}
 	
+	public JButton[][] getButtons(){
+		return b;
+	}
+	
 	public void addToControlPanel(String text) {
 		
 		controlPanel.append(text + "\n");

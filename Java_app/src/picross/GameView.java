@@ -190,3 +190,5 @@ public class GameView extends JFrame{
 		this.setVisible(true);
 	}
 }
+	
+	

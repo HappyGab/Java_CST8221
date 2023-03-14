@@ -240,3 +240,4 @@ public class Picross extends JFrame{
 	}
 
 }
+//

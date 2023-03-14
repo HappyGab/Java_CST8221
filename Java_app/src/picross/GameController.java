@@ -17,6 +17,11 @@ public class GameController  {
 		this.gameView.addResetListener(new ResetListener());
 	}
 	
+	private void resetGame() {
+		
+		this.gameView.addGameListener(new GameListener());
+	}
+	
 	class GameListener implements ActionListener{
 
 		@Override
@@ -25,7 +30,6 @@ public class GameController  {
 			gameView.addToControlPanel("pressed");
 			System.out.println("y");
 		}
-		
 	}
 	
 	class ResetListener implements ActionListener{
@@ -35,9 +39,9 @@ public class GameController  {
 			
 			int size = gameView.getSizeFromBox();
 			gameView.setboardSize(size);
-			
+			gameView.configureCenterPanel();
+			resetGame();
+			gameView.updateComponents();
 		}		
 	}
-	
-
 }

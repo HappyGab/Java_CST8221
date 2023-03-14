@@ -40,6 +40,8 @@ public class GameController  {
 			int size = gameView.getSizeFromBox();
 			gameView.setboardSize(size);
 			gameView.configureCenterPanel();
+			gameView.configureNorthPanel();
+			gameView.configureWestPanel();
 			resetGame();
 			gameView.updateComponents();
 		}		

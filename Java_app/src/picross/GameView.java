@@ -22,7 +22,9 @@ public class GameView extends JFrame{
 	static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
 	static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
 	
-	public static void configureNorthPanel() {
+	public void configureNorthPanel() {
+		
+		northPanel.removeAll();
 		
 		northPanel.setLayout(new BorderLayout());
 		
@@ -60,7 +62,9 @@ public class GameView extends JFrame{
 		
 	}
 	
-	public static void configureWestPanel() {
+	public void configureWestPanel() {
+		
+		westPanel.removeAll();
 		
 		// Rows info panel ********************************************************
 		westPanel.setPreferredSize(new Dimension(150,425));
@@ -73,7 +77,7 @@ public class GameView extends JFrame{
 		}
 	}
 	
-	public static void configureEastPanel() {
+	public void configureEastPanel() {
 		
 		eastPanel.setPreferredSize(new Dimension(225, 575));
 		

@@ -1,11 +1,14 @@
 package picross;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.*;
-
+//hello
 public class GameView extends JFrame{
 	
 	// game components ***************************************************************
@@ -14,11 +17,21 @@ public class GameView extends JFrame{
 	private static JPanel eastPanel = new JPanel();
 	private static JPanel centerPanel = new JPanel();
 	
+	
 	static Border labelBorder = BorderFactory.createLineBorder(Color.black);
 	static JTextArea controlPanel = new JTextArea();
 	static int boardSize = 5;
 	private static JButton b[][] = new JButton[boardSize][boardSize];
-	private static JButton resetButton = new JButton("RESET");
+	 static JButton resetButton = new JButton("RESET");
+	
+	//timer************************************************************************
+    static JLabel timerLabel = new JLabel("00:00"); 
+    Timer timer; 
+    int second; 
+    int minutes; 
+    
+    
+    
 	static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
 	static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
 	
@@ -89,8 +102,8 @@ public class GameView extends JFrame{
 		
 		// Timer - size combo box - reset button *************************************
 		JPanel eastSouth = new JPanel();
+		
 		eastSouth.setLayout(new BorderLayout());
-		JLabel timerLabel = new JLabel("Placeholder for timer");
 		eastSouth.add(timerLabel, BorderLayout.NORTH);
 		eastSouth.add(boardSizeBox, BorderLayout.WEST);
 		eastSouth.add(resetButton, BorderLayout.EAST);
@@ -98,6 +111,8 @@ public class GameView extends JFrame{
 		// adding components to east Panel
 		eastPanel.add(controlPanelScrollBar);
 		eastPanel.add(eastSouth, BorderLayout.SOUTH);
+		
+	
 	}
 	
 	public void addResetListener(ActionListener listenButton) {
@@ -188,7 +203,18 @@ public class GameView extends JFrame{
 		this.setResizable(false);		
 		
 		this.setVisible(true);
+		
 	}
+	
+	
+	
+	public void addTimerListener(ActionListener listener) {
+
+		timer = new Timer(1000, listener );
+		timer.start();
+		
+		
+		
+	}
+
 }
-	
-	

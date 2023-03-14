@@ -2,7 +2,9 @@ package picross;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 
+//hello 
 import javax.swing.JButton;
 
 public class GameController  {
@@ -16,7 +18,8 @@ public class GameController  {
 		this.gameView = gameView;
 		
 		this.gameView.addGameListener(new GameListener());
-		this.gameView.addResetListener(new ResetListener());
+		this.gameView.addResetListener(new ResetListener());   
+		this.gameView.addTimerListener(new TimerListener());
 	}
 	
 	private void resetGame() {
@@ -65,6 +68,36 @@ public class GameController  {
 			gameView.configureWestPanel();
 			resetGame();
 			gameView.updateComponents();
-		}		
+		}	
+	}	
+		
+	class TimerListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			DecimalFormat format = new DecimalFormat("00"); 
+			String dSecond; 
+			String dMinute; 
+			
+			gameView.second ++;
+			
+			
+			
+			if (gameView.second==60) {
+				gameView.second = 0;
+				gameView.minutes++;
+				
+			}
+			
+			dSecond = format.format(gameView.second); 
+			dMinute = format.format(gameView.minutes);
+			gameView.timerLabel.setText("" + dMinute +":" + dSecond);
+			
+			
+			
+		
+		}
 	}
 }
+

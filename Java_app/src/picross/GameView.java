@@ -154,7 +154,6 @@ public class GameView extends JFrame{
 		// game board ****************************************************************
 		centerPanel.removeAll();
 		centerPanel.setLayout(new GridLayout(boardSize,boardSize));
-		System.out.println(boardSize);
 		for (int i=0;i<boardSize;i++) {
 			for(int i2=0;i2<boardSize;i2++) {
 				b[i][i2] = new JButton();

@@ -39,18 +39,30 @@ public class GameController  {
 			int bX = -1;
 			int bY = -1;
 			
+			int linearValue = -1;
+			
 			for (int i=0;i<b.length;i++) {
 				for (int i2=0;i2<b[i].length;i2++) {
 					if (b[i][i2] == bClicked) {
 						bX = i;
 						bY = i2;
+						
+						linearValue++;
+						
 						break;
 					}
 				}
 			}
 			bX++;
 			bY++;
-				
+			
+			if(gameModel.getGameValues().charAt(linearValue) == '0') {
+				bClicked.setBackground(Color.RED);
+			}
+			else {
+				bClicked.setBackground(Color.GREEN);
+			}
+			
 			gameView.addToControlPanel("pressed at " + bX + "," + bY);
 		}
 	}
@@ -68,6 +80,7 @@ public class GameController  {
 			gameView.configureWestPanel();
 			String newGame = gameModel.randomGame();
 			System.out.println(newGame);
+			gameView.timerLabel.setText("00:00");
 			resetGame();
 			gameView.updateComponents();
 		}	

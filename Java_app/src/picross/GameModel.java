@@ -3,12 +3,12 @@ package picross;
 public class GameModel {
 	
 	int boardSize;
-	String gameValues;
+	static String gameValues;
 	
 	public GameModel() {
 		
-		this.boardSize = 5;
-		this.gameValues = "0010000100111110111001010";
+		boardSize = 5;
+		gameValues = "0010000100111110111001010";
 	}
 
 	public String randomGame() {
@@ -25,6 +25,20 @@ public class GameModel {
 		gameValues = solution;
 		
 		return solution;
+	}
+	
+	public static boolean zeroOrOne(int index){
+        char c = gameValues.charAt(index);
+        if(c == '1'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+	
+	public String getGameValues() {
+		
+		return gameValues;
 	}
 	
 	public int getBoardSize() {

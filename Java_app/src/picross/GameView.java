@@ -1,6 +1,7 @@
 package picross;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -15,10 +16,15 @@ public class GameView extends JFrame{
 	private static JPanel eastPanel = new JPanel();
 	private static JPanel centerPanel = new JPanel();
 	
-
-	Border labelBorder = BorderFactory.createLineBorder(Color.black);
+	static Border labelBorder = BorderFactory.createLineBorder(Color.black);
+	static JTextArea controlPanel = new JTextArea();
+	static int boardSize = 5;
+	private static JButton b[][] = new JButton[boardSize][boardSize];
+	private static JButton resetButton = new JButton("RESET");
+	static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
+	static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
 	
-	public void configureNorthPanel(int boardSize) {
+	public static void configureNorthPanel() {
 		
 		northPanel.setLayout(new BorderLayout());
 		
@@ -56,7 +62,7 @@ public class GameView extends JFrame{
 		
 	}
 	
-	public void configureWestPanel(int boardSize) {
+	public static void configureWestPanel() {
 		
 		// Rows info panel ********************************************************
 		westPanel.setPreferredSize(new Dimension(150,425));
@@ -69,12 +75,11 @@ public class GameView extends JFrame{
 		}
 	}
 	
-	public void configureEastPanel() {
+	public static void configureEastPanel() {
 		
 		eastPanel.setPreferredSize(new Dimension(225, 575));
 		
 		// control panel *************************************************************
-		JTextArea controlPanel = new JTextArea();
 		controlPanel.setEditable(false);
 		JScrollPane controlPanelScrollBar = new JScrollPane(controlPanel);
 		controlPanelScrollBar.setPreferredSize(new Dimension(225,300));
@@ -84,9 +89,6 @@ public class GameView extends JFrame{
 		JPanel eastSouth = new JPanel();
 		eastSouth.setLayout(new BorderLayout());
 		JLabel timerLabel = new JLabel("Placeholder for timer");
-		String[] boardSizes = {"5x5","10x10","15x15","20x20"};
-		JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
-		JButton resetButton = new JButton("RESET");
 		eastSouth.add(timerLabel, BorderLayout.NORTH);
 		eastSouth.add(boardSizeBox, BorderLayout.WEST);
 		eastSouth.add(resetButton, BorderLayout.EAST);
@@ -96,11 +98,45 @@ public class GameView extends JFrame{
 		eastPanel.add(eastSouth, BorderLayout.SOUTH);
 	}
 	
-	public void configureCenterPanel(int boardSize) {
+	public void addResetListener(ActionListener listenButton) {
+		
+		resetButton.addActionListener(listenButton);
+	}
+	
+	public int getSizeFromBox() {
+		
+		int index = boardSizeBox.getSelectedIndex();
+		int size = 0;
+		
+		switch (index) {
+			case 0:
+				size = 5;
+				break;
+			case 1:
+				size = 10;
+				break;
+			case 2:
+				size = 15;
+				break;
+			case 20:
+				size = 20;
+				break;
+		}
+		
+		return size;
+	}
+	
+	public void setboardSize(int size) {
+		
+		GameView.boardSize = size;
+		GameView.b = new JButton[size][size];
+	}
+	
+	public void configureCenterPanel() {
 		
 		// game board ****************************************************************
 		centerPanel.setLayout(new GridLayout(boardSize,boardSize));
-		JButton[][] b = new JButton[boardSize][boardSize];
+		//JButton[][] b = new JButton[boardSize][boardSize];
 		for (int i=0;i<boardSize;i++) {
 			for(int i2=0;i2<boardSize;i2++) {
 				b[i][i2] = new JButton();
@@ -108,8 +144,32 @@ public class GameView extends JFrame{
 			}
 		}
 	}
+
+	public void addGameListener(ActionListener listenButton) {
+		configureCenterPanel();
+		
+		for (int i=0;i<boardSize;i++) {
+			for(int i2=0;i2<boardSize;i2++) {
+				b[i][i2].addActionListener(listenButton);
+			}
+		}
+	}
+	
+	public void addToControlPanel(String text) {
+		
+		controlPanel.append(text + "\n");
+	}
+	
+	public void setBoardSize(int size) {
+		
+		GameView.boardSize = size;
+	}
 	
 	public void createGame() {
+		
+		configureWestPanel();
+		configureNorthPanel();
+		configureEastPanel();
 		
 		game.setSize(750,575);
 		game.setResizable(false);

@@ -14,7 +14,8 @@ public class GameController  {
 		this.gameView = gameView;
 		
 		this.gameView.addGameListener(new GameListener());
-		this.gameView.addResetListener(new ResetListener());
+		this.gameView.addResetListener(new ResetListener());   
+		this.gameView.addTimerListener(new TimerListener());
 	}
 	
 	class GameListener implements ActionListener{

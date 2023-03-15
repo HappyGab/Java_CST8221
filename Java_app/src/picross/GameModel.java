@@ -28,8 +28,11 @@ public class GameModel {
 	}
 	
 	public static boolean zeroOrOne(int index){
-        char c = gameValues.charAt(index);
-        if(c == '1'){
+       // char c = gameValues.charAt(index);
+        
+       
+ 
+        if(Character.compare(gameValues.charAt(index), '1') == 0){
             return true;
         }else{
             return false;

@@ -12,6 +12,7 @@ public class GameController  {
 	GameModel gameModel;
 	GameView gameView;
 	
+	
 	public GameController(GameModel gameModel, GameView gameView) {
 		
 		this.gameModel = gameModel;
@@ -28,11 +29,14 @@ public class GameController  {
 	}
 	
 	class GameListener implements ActionListener{
-
+		JButton b[][] = gameView.getButtons();
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			JButton b[][] = gameView.getButtons();
+			
+			
+			
 			
 			JButton bClicked = (JButton) e.getSource();
 			
@@ -40,28 +44,39 @@ public class GameController  {
 			int bY = -1;
 			
 			int linearValue = -1;
+			boolean exit = false;
 			
 			for (int i=0;i<b.length;i++) {
+				if (exit == true) {
+					break; 
+				}
+				
 				for (int i2=0;i2<b[i].length;i2++) {
+					linearValue++;
+					
 					if (b[i][i2] == bClicked) {
 						bX = i;
 						bY = i2;
-						
-						linearValue++;
-						
+							
+						exit = true; 
 						break;
+						
 					}
+					
+				
+					
 				}
 			}
 			bX++;
 			bY++;
+ 
 			
 			if(gameModel.getGameValues().charAt(linearValue) == '0') {
-				bClicked.setBackground(Color.RED);
-			}
-			else {
-				bClicked.setBackground(Color.GREEN);
-			}
+                ((JButton)e.getSource()).setBackground(Color.RED);
+            }
+            else if (gameModel.getGameValues().charAt(linearValue) == '1') {
+                ((JButton)e.getSource()).setBackground(Color.GREEN);
+            }
 			
 			gameView.addToControlPanel("pressed at " + bX + "," + bY);
 		}

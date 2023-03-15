@@ -34,10 +34,6 @@ public class GameController  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-			
-			
-			
-			
 			JButton bClicked = (JButton) e.getSource();
 			
 			int bX = -1;
@@ -62,14 +58,10 @@ public class GameController  {
 						break;
 						
 					}
-					
-				
-					
 				}
 			}
 			bX++;
 			bY++;
- 
 			
 			if(gameModel.getGameValues().charAt(linearValue) == '0') {
                 ((JButton)e.getSource()).setBackground(Color.RED);
@@ -96,6 +88,8 @@ public class GameController  {
 			String newGame = gameModel.randomGame();
 			System.out.println(newGame);
 			gameView.timerLabel.setText("00:00");
+			String[] newSideLabels = gameModel.sideLabelValues();
+			gameView.setSideLabelValues(newSideLabels);
 			resetGame();
 			gameView.updateComponents();
 		}	

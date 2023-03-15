@@ -22,10 +22,11 @@ public class GameView extends JFrame{
 	static JTextArea controlPanel = new JTextArea();
 	static int boardSize = 5;
 	private static JButton b[][] = new JButton[boardSize][boardSize];
-	 static JButton resetButton = new JButton("RESET");
+	static JButton resetButton = new JButton("RESET");
+	JLabel[] rowsInfo = new JLabel[boardSize];
 	
 	//timer************************************************************************
-    static JLabel timerLabel = new JLabel("00:00"); 
+    JLabel timerLabel = new JLabel("00:00"); 
     Timer timer; 
     int second; 
     int minutes; 
@@ -82,11 +83,19 @@ public class GameView extends JFrame{
 		// Rows info panel ********************************************************
 		westPanel.setPreferredSize(new Dimension(150,425));
 		westPanel.setLayout(new GridLayout(boardSize, 1));
-		JLabel[] rowsInfo = new JLabel[boardSize];
+		
 		for(int i=0;i<boardSize;i++) {
-			rowsInfo[i] = new JLabel("row " + (i+1));
+			rowsInfo[i] = new JLabel();
 			rowsInfo[i].setBorder(labelBorder);
 			westPanel.add(rowsInfo[i]);
+		}
+	}
+	
+	public void setSideLabelValues(String[] values) {
+		
+		for(int i=0;i<boardSize;i++) {
+			
+			rowsInfo[i].setText(values[i]);
 		}
 	}
 	

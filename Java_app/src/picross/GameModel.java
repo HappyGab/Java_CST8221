@@ -27,17 +27,38 @@ public class GameModel {
 		return solution;
 	}
 	
-	public static boolean zeroOrOne(int index){
-       // char c = gameValues.charAt(index);
-        
-       
- 
-        if(Character.compare(gameValues.charAt(index), '1') == 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
+	public String[] sideLabelValues() {
+		
+		int linearIndex = -1;
+		
+		String labelValues[] = new String[boardSize];
+		
+		for(int i=0;i<boardSize;i++) {
+			
+			int sequence = 0;
+			
+			for(int i2=0;i2<boardSize;i2++) {
+				
+				linearIndex++;
+				
+				if(gameValues.charAt(linearIndex) == '1') {
+					
+					sequence++;
+				}
+				else {
+					
+					if(sequence != 0) {
+						
+						labelValues[i] = labelValues[i] + " " + sequence;
+					}
+					
+					sequence = 0;
+				}	
+			}
+		}
+		
+		return labelValues;
+	}
 	
 	public String getGameValues() {
 		

@@ -32,8 +32,11 @@ public class GameController  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
+<<<<<<< Updated upstream
 			JButton b[][] = gameView.getButtons();
 			
+=======
+>>>>>>> Stashed changes
 			JButton bClicked = (JButton) e.getSource();
 			
 			int bX = -1;
@@ -67,7 +70,14 @@ public class GameController  {
 			gameView.configureNorthPanel(); 
 			gameView.configureWestPanel();
 			resetGame();
+			
+		    
 			gameView.updateComponents();
+			
+			gameView.timer.stop();
+			gameView.timer.restart();
+			gameView.timer.start();
+			
 		}	
 	}	
 		

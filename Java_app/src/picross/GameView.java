@@ -156,6 +156,7 @@ public class GameView extends JFrame{
 		
 		boardSize = size;
 		b = new JButton[size][size];
+		rowsInfo = new JLabel[size];
 	}
 	
 	public void configureCenterPanel() {

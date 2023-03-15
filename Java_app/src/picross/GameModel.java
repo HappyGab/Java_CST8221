@@ -30,13 +30,12 @@ public class GameModel {
 	public String[] sideLabelValues() {
 		
 		int linearIndex = -1;
+		int sequence = 0;
 		
 		String labelValues[] = new String[boardSize];
 		
 		for(int i=0;i<boardSize;i++) {
-			
-			int sequence = 0;
-			
+						
 			for(int i2=0;i2<boardSize;i2++) {
 				
 				linearIndex++;
@@ -47,14 +46,33 @@ public class GameModel {
 				}
 				else {
 					
-					if(sequence != 0) {
+					if(sequence > 0) {
 						
-						labelValues[i] = labelValues[i] + " " + sequence;
+						if(labelValues[i] == null) {
+							labelValues[i] = "	" + sequence;							
+						}
+						else {
+							
+							labelValues[i] = labelValues[i] + " " + sequence;
+						}
 					}
-					
 					sequence = 0;
-				}	
+					
+				}
 			}
+			
+			if(sequence > 0) {
+				
+				if(labelValues[i] == null) {
+					labelValues[i] = "	" + sequence;							
+				}
+				else {
+					
+					labelValues[i] = labelValues[i] + " " + sequence;
+				}
+			}
+			
+			sequence = 0;
 		}
 		
 		return labelValues;

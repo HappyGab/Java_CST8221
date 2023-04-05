@@ -23,7 +23,9 @@ public class GameView extends JFrame{
 	static int boardSize = 5;
 	private static JButton b[][] = new JButton[boardSize][boardSize];
 	static JButton resetButton = new JButton("RESET");
+	
 	JLabel[] rowsInfo = new JLabel[boardSize];
+	JPanel[] columnsInfo = new JPanel[boardSize];
 	
 	//timer************************************************************************
     JLabel timerLabel = new JLabel("00:00"); 
@@ -31,7 +33,7 @@ public class GameView extends JFrame{
     int second; 
     int minutes; 
     
-    
+    boolean firstGame = true;
     
 	static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
 	static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
@@ -52,11 +54,24 @@ public class GameView extends JFrame{
 		JPanel topCenter = new JPanel();
 		topCenter.setPreferredSize(new Dimension(375,150));
 		topCenter.setLayout(new GridLayout(1,boardSize));
-		JLabel[] columnsInfo = new JLabel[boardSize];
 		for(int i=0;i<boardSize;i++) {
 			
-			columnsInfo[i] = new JLabel("column " + (i+1));
+			columnsInfo[i] = new JPanel();
 			columnsInfo[i].setBorder(labelBorder);
+			columnsInfo[i].setLayout(new GridLayout(boardSize/2+1,1));
+		}
+		
+		if(firstGame == true) {
+			String topInfoStartingValues[] = {"1", "3", "4", "3", "1"};
+			for(int i=0;i<boardSize;i++) {
+				
+				JLabel columnsStartingValues = new JLabel();
+				columnsStartingValues.setText(topInfoStartingValues[i]);
+				columnsInfo[i].add(columnsStartingValues);
+			}
+		}
+		
+		for(int i=0;i<boardSize;i++) {
 			topCenter.add(columnsInfo[i]);
 		}
 		
@@ -87,15 +102,39 @@ public class GameView extends JFrame{
 		for(int i=0;i<boardSize;i++) {
 			rowsInfo[i] = new JLabel();
 			rowsInfo[i].setBorder(labelBorder);
+		}
+		
+		if(firstGame == true) {
+			rowsInfo[0].setText("1");
+			rowsInfo[1].setText("1");
+			rowsInfo[2].setText("5");
+			rowsInfo[3].setText("3");
+			rowsInfo[4].setText("1 1");
+		}
+		
+		for(int i=0;i<boardSize;i++) {
 			westPanel.add(rowsInfo[i]);
 		}
 	}
 	
-	public void setSideLabelValues(String[] values) {
+	public void setLabelValues(String[] sidevalues, String[][] topValues) {
 		
 		for(int i=0;i<boardSize;i++) {
 			
-			rowsInfo[i].setText(values[i]);
+			rowsInfo[i].setText(sidevalues[i]);
+		}
+		
+		for(int i=0;i<boardSize;i++) {
+			
+			int i2 = 0;
+			while (topValues[i][i2] != null) {
+				
+				JLabel colValues = new JLabel();
+				colValues.setText("" + topValues[i][i2]);
+				i2++;
+				columnsInfo[i].add(colValues);
+			}
+			
 		}
 	}
 	
@@ -157,6 +196,7 @@ public class GameView extends JFrame{
 		boardSize = size;
 		b = new JButton[size][size];
 		rowsInfo = new JLabel[size];
+		columnsInfo = new JPanel[size];
 	}
 	
 	public void configureCenterPanel() {
@@ -205,6 +245,8 @@ public class GameView extends JFrame{
 		configureWestPanel();
 		configureNorthPanel();
 		configureEastPanel();
+		
+		firstGame = false;
 		
 		updateComponents();
 		

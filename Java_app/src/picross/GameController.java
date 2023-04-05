@@ -89,7 +89,8 @@ public class GameController  {
 			System.out.println(newGame);
 			gameView.timerLabel.setText("00:00");
 			String[] newSideLabels = gameModel.sideLabelValues();
-			gameView.setSideLabelValues(newSideLabels);
+			String[][] newTopLabels = gameModel.topLabelValues();
+			gameView.setLabelValues(newSideLabels, newTopLabels);
 			resetGame();
 			gameView.updateComponents();
 		}	

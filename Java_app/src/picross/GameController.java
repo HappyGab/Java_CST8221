@@ -62,15 +62,28 @@ public class GameController  {
 			}
 			bX++;
 			bY++;
+
+			gameView.addToControlPanel("pressed at " + bX + "," + bY);
 			
 			if(gameModel.getGameValues().charAt(linearValue) == '0') {
                 ((JButton)e.getSource()).setBackground(Color.RED);
+                gameView.updateScore(false);
             }
             else if (gameModel.getGameValues().charAt(linearValue) == '1') {
+            	
+            	int score1 = gameView.getScore();         	
+            	
                 ((JButton)e.getSource()).setBackground(Color.GREEN);
+                gameView.updateScore(true);
+                boolean gameOver = gameModel.isGameOver();
+                if(gameOver == true) {
+                	int score = gameView.getScore();
+    				String finalScore = gameModel.getFinalScore(score);
+    				gameView.gameOver(finalScore);
+    			}
             }
+			((JButton)e.getSource()).setEnabled(false);
 			
-			gameView.addToControlPanel("pressed at " + bX + "," + bY);
 		}
 	}
 	
@@ -91,6 +104,7 @@ public class GameController  {
 			String[] newSideLabels = gameModel.sideLabelValues();
 			String[][] newTopLabels = gameModel.topLabelValues();
 			gameView.setLabelValues(newSideLabels, newTopLabels);
+			gameView.resetScore();
 			resetGame();
 			gameView.updateComponents();
 		}	

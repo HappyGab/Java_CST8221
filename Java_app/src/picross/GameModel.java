@@ -4,21 +4,30 @@ public class GameModel {
 	
 	int boardSize;
 	static String gameValues;
+	int maxWin;
+	int totalGoodClicked;
 	
 	public GameModel() {
 		
 		boardSize = 5;
 		gameValues = "0010000100111110111001010";
+		maxWin = 12;
+		totalGoodClicked = 0;
 	}
 
 	public String randomGame() {
 		
 		String solution = "";
+		maxWin = 0;
+		totalGoodClicked = 0;
 		
 		for(int i=0;i<boardSize;i++) {
 			for(int i2=0;i2<boardSize;i2++) {
 				int randomNum = (int) Math.round(Math.random());
 				solution = solution + randomNum;
+				if(randomNum == 1) {
+					maxWin++;
+				}
 			}
 		}
 		
@@ -84,7 +93,7 @@ public class GameModel {
 		int jumpIndex = 0;
 		int sequence = 0;
 		
-		String labelValues[][] = new String[boardSize][(boardSize / 2) + 1];
+		String labelValues[][] = new String[boardSize][boardSize];
 		
 		for(int i=0;i<boardSize;i++) {
 			
@@ -141,6 +150,36 @@ public class GameModel {
 		return labelValues;
 	}
 	
+	public String getFinalScore(int score) {
+		
+		String result;
+		
+		if(score < maxWin) {
+			result = ("Game finished with " + score + "/" + maxWin + " points!");
+		}
+		else {
+			result = ("Game finished with " + score + "/" + maxWin + " points!\nPerfect Game!!");
+		}
+		
+		return result;
+	}
+	
+	public boolean isGameOver() {
+		
+		totalGoodClicked++;
+		
+		if(totalGoodClicked == maxWin) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public void resetTotalGoodClicked() {
+		totalGoodClicked = 0;
+	}
+	
 	public String getGameValues() {
 		
 		return gameValues;
@@ -148,6 +187,14 @@ public class GameModel {
 	
 	public int getBoardSize() {
 		return boardSize;
+	}
+	
+	public int getMaxWin() {
+		return maxWin;
+	}
+	
+	public int getTotalGoodClicked() {
+		return totalGoodClicked;
 	}
 
 	public void setBoardSize(int boardSize) {

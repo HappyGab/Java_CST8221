@@ -17,26 +17,28 @@ public class GameView extends JFrame{
 	private static JPanel eastPanel = new JPanel();
 	private static JPanel centerPanel = new JPanel();
 	
-	
 	static Border labelBorder = BorderFactory.createLineBorder(Color.black);
 	static JTextArea controlPanel = new JTextArea();
 	static int boardSize = 5;
 	private static JButton b[][] = new JButton[boardSize][boardSize];
 	static JButton resetButton = new JButton("RESET");
 	
-	JLabel[] rowsInfo = new JLabel[boardSize];
-	JPanel[] columnsInfo = new JPanel[boardSize];
+	private JLabel[] rowsInfo = new JLabel[boardSize];
+	private JPanel[] columnsInfo = new JPanel[boardSize];
 	
 	//timer************************************************************************
     JLabel timerLabel = new JLabel("00:00"); 
     Timer timer; 
     int second; 
-    int minutes; 
+    int minutes;
     
-    boolean firstGame = true;
+    private int score = 0;
+    private JLabel scoreTracker = new JLabel("Score: " + score);
     
-	static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
-	static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
+    private boolean firstGame = true;
+    
+    private static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
+    private static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
 	
 	public void configureNorthPanel() {
 		
@@ -79,7 +81,7 @@ public class GameView extends JFrame{
 		JPanel topEast = new JPanel();
 		topEast.setPreferredSize(new Dimension(225,150));
 		topEast.setLayout(new BorderLayout());
-		JLabel scoreTracker = new JLabel("score tracker placeholder");
+		
 		JRadioButton markButton = new JRadioButton("mark");
 		topEast.add(scoreTracker, BorderLayout.NORTH);
 		topEast.add(markButton, BorderLayout.SOUTH);
@@ -238,6 +240,38 @@ public class GameView extends JFrame{
 		this.add(westPanel, BorderLayout.WEST);
 		this.add(eastPanel, BorderLayout.EAST);
 		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	public void updateScore(boolean bool) {
+		
+		if(bool == true) {
+			score++;
+		}
+		else {
+			score--;
+		}
+		scoreTracker.setText("Score: " + score);
+		
+	}
+	
+	public void gameOver(String finalScore) {
+		
+		addToControlPanel(finalScore);
+		
+		for(int i=0;i<boardSize;i++) {
+			for(int i2=0;i2<boardSize;i2++) {
+				b[i][i2].setEnabled(false);
+			}
+		}
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	public void resetScore() {
+		
+		score = 0;
+		scoreTracker.setText("Score: " + score);
 	}
 	
 	public void createGame() {

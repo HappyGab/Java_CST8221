@@ -64,27 +64,34 @@ public class GameController  {
 			}
 			bX++;
 			bY++;
-
-			gameView.addToControlPanel("pressed at " + bX + "," + bY);
 			
-			if(gameModel.getGameValues().charAt(linearValue) == '0') {
-                ((JButton)e.getSource()).setBackground(Color.RED);
-                gameView.updateScore(false);
-            }
-            else if (gameModel.getGameValues().charAt(linearValue) == '1') {
-            	
-            	int score1 = gameView.getScore();         	
-            	
-                ((JButton)e.getSource()).setBackground(Color.GREEN);
-                gameView.updateScore(true);
-                boolean gameOver = gameModel.isGameOver();
-                if(gameOver == true) {
-                	int score = gameView.getScore();
-    				String finalScore = gameModel.getFinalScore(score);
-    				gameView.gameOver(finalScore);
-    			}
-            }
-			((JButton)e.getSource()).setEnabled(false);
+			boolean markEnabled = gameView.isMarkEnabled();
+			
+			if(markEnabled == false) {
+				if(gameModel.getGameValues().charAt(linearValue) == '0') {
+					gameView.changeButtonColor(bX-1,bY-1,"Red");
+	                gameView.updateScore(false);
+
+	    			gameView.addToControlPanel("Wrong click at " + bX + "," + bY);
+	            }
+	            else if (gameModel.getGameValues().charAt(linearValue) == '1') {  	
+	            	
+	            	gameView.changeButtonColor(bX-1,bY-1,"Green");
+	                gameView.updateScore(true);
+	                boolean gameOver = gameModel.isGameOver();
+	                if(gameOver == true) {
+	                	int score = gameView.getScore();
+	    				String finalScore = gameModel.getFinalScore(score);
+	    				gameView.gameOver(finalScore);
+	    			}
+
+	    			gameView.addToControlPanel("Correct click at " + bX + "," + bY);
+	            }
+				((JButton)e.getSource()).setEnabled(false);
+			}
+			else {
+				gameView.changeButtonColor(bX-1,bY-1,"lightYellow");
+			}
 		}
 	}
 	
@@ -100,7 +107,6 @@ public class GameController  {
 			gameView.configureNorthPanel(); 
 			gameView.configureWestPanel();
 			String newGame = gameModel.randomGame();
-			System.out.println(newGame);
 			gameView.timerLabel.setText("00:00");
 			String[] newSideLabels = gameModel.sideLabelValues();
 			String[][] newTopLabels = gameModel.topLabelValues();
@@ -125,11 +131,13 @@ public class GameController  {
 					
 					if(solution.charAt(linearIndex) == '1') {
 						
-						gameView.changeButtonColor(i,i2,"lGreen");
+						gameView.changeButtonColor(i,i2,"lightGreen");
 					}
 					linearIndex++;
 				}
 			}
+			
+			gameView.addToControlPanel("Solution revealed");
 		}
 	}
 		

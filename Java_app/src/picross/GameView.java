@@ -17,12 +17,15 @@ public class GameView extends JFrame{
 	private static JPanel eastPanel = new JPanel();
 	private static JPanel centerPanel = new JPanel();
 	
-	static Border labelBorder = BorderFactory.createLineBorder(Color.black);
-	static JTextArea controlPanel = new JTextArea();
-	static int boardSize = 5;
+	private static JMenuBar menuBar = new JMenuBar();
+	
+	private static Border labelBorder = BorderFactory.createLineBorder(Color.black);
+	private static JTextArea controlPanel = new JTextArea();
+	private static int boardSize = 5;
 	private static JButton b[][] = new JButton[boardSize][boardSize];
-	static JButton resetButton = new JButton("RESET");
-	static JButton showSolution = new JButton("Show Solution");
+	private static JButton resetButton = new JButton("RESET");
+	private static JButton showSolution = new JButton("Show Solution");
+	private static JRadioButton markButton = new JRadioButton("mark");
 	
 	private JLabel[] rowsInfo = new JLabel[boardSize];
 	private JPanel[] columnsInfo = new JPanel[boardSize];
@@ -41,6 +44,26 @@ public class GameView extends JFrame{
     private static String[] boardSizes = {"5x5","10x10","15x15","20x20"};
     private static JComboBox<String> boardSizeBox = new JComboBox<String>(boardSizes);
 	
+    public void configureMenuBar() {
+    	
+    	JMenu serverOptions = new JMenu("Server Options");
+    	
+    	JMenuItem item1, item2, item3;
+    	
+    	item1 = new JMenuItem("Option 1");
+    	item2 = new JMenuItem("Option 2");
+    	item3 = new JMenuItem("Option 3");
+    	
+    	serverOptions.add(item1);
+    	serverOptions.add(item2);
+    	serverOptions.add(item3);
+    	
+    	menuBar.add(serverOptions);
+    	
+    	this.setJMenuBar(menuBar);
+    	
+    }
+    
 	public void configureNorthPanel() {
 		
 		northPanel.removeAll();
@@ -81,11 +104,9 @@ public class GameView extends JFrame{
 		// Mark button - score *******************************************************
 		JPanel topEast = new JPanel();
 		topEast.setPreferredSize(new Dimension(225,150));
-		topEast.setLayout(new BorderLayout());
+		topEast.setLayout(new BorderLayout(0,40));
 		
-		topEast.add(showSolution);
-		
-		JRadioButton markButton = new JRadioButton("mark");
+		topEast.add(showSolution, BorderLayout.EAST);
 		topEast.add(scoreTracker, BorderLayout.NORTH);
 		topEast.add(markButton, BorderLayout.SOUTH);
 		
@@ -256,13 +277,25 @@ public class GameView extends JFrame{
 		
 		switch(col) {
 		
-		case "lGreen":
+		case "lightGreen":
 			c = new Color(204,255,204);
+			if(b[x][y].isEnabled()) {
+				b[x][y].setBackground(c);
+			}
 			break;
-		}
-		
-		if(b[x][y].isEnabled()) {
+		case "Green":
+			c = new Color(0,255,0);
 			b[x][y].setBackground(c);
+			break;
+		case "Red":
+			c = new Color(255,0,0);
+			b[x][y].setBackground(c);
+			break;
+		case "lightYellow":
+			c = new Color(255,255,204);
+			b[x][y].setBackground(c);
+			break;
+			
 		}
 	}
 	
@@ -289,9 +322,19 @@ public class GameView extends JFrame{
 		}
 	}
 	
+	public boolean isMarkEnabled() {
+		
+		if(markButton.isSelected()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public int getScore() {
 		return score;
 	}
+	
 	public void resetScore() {
 		
 		score = 0;
@@ -303,6 +346,7 @@ public class GameView extends JFrame{
 		configureWestPanel();
 		configureNorthPanel();
 		configureEastPanel();
+		configureMenuBar();
 		
 		firstGame = false;
 		

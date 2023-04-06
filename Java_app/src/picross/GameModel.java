@@ -15,7 +15,7 @@ public class GameModel {
 		totalGoodClicked = 0;
 	}
 
-	public String randomGame() {
+	public void randomGame() {
 		
 		String solution = "";
 		maxWin = 0;
@@ -32,8 +32,6 @@ public class GameModel {
 		}
 		
 		gameValues = solution;
-		
-		return solution;
 	}
 	
 	public String[] sideLabelValues() {

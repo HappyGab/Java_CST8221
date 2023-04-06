@@ -106,7 +106,7 @@ public class GameView extends JFrame{
 		topEast.setPreferredSize(new Dimension(225,150));
 		topEast.setLayout(new BorderLayout(0,40));
 		
-		topEast.add(showSolution, BorderLayout.EAST);
+		topEast.add(showSolution, BorderLayout.WEST);
 		topEast.add(scoreTracker, BorderLayout.NORTH);
 		topEast.add(markButton, BorderLayout.SOUTH);
 		
@@ -255,6 +255,10 @@ public class GameView extends JFrame{
 	
 	public JButton[][] getButtons(){
 		return b;
+	}
+	
+	public JButton getShowSolution() {
+		return showSolution;
 	}
 	
 	public void addToControlPanel(String text) {

@@ -26,6 +26,9 @@ public class GameController  {
 	
 	private void resetGame() {
 		
+		JButton showSolution = gameView.getShowSolution();		
+		showSolution.removeActionListener(showSolution.getActionListeners()[0]);		
+		
 		this.gameView.addGameListener(new GameListener());
 		this.gameView.addShowSolutionListener(new showSolutionListener());
 	}
@@ -106,7 +109,7 @@ public class GameController  {
 			gameView.configureCenterPanel();
 			gameView.configureNorthPanel(); 
 			gameView.configureWestPanel();
-			String newGame = gameModel.randomGame();
+			gameModel.randomGame();
 			gameView.timerLabel.setText("00:00");
 			String[] newSideLabels = gameModel.sideLabelValues();
 			String[][] newTopLabels = gameModel.topLabelValues();

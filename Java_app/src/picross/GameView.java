@@ -22,6 +22,7 @@ public class GameView extends JFrame{
 	static int boardSize = 5;
 	private static JButton b[][] = new JButton[boardSize][boardSize];
 	static JButton resetButton = new JButton("RESET");
+	static JButton showSolution = new JButton("Show Solution");
 	
 	private JLabel[] rowsInfo = new JLabel[boardSize];
 	private JPanel[] columnsInfo = new JPanel[boardSize];
@@ -81,6 +82,8 @@ public class GameView extends JFrame{
 		JPanel topEast = new JPanel();
 		topEast.setPreferredSize(new Dimension(225,150));
 		topEast.setLayout(new BorderLayout());
+		
+		topEast.add(showSolution);
 		
 		JRadioButton markButton = new JRadioButton("mark");
 		topEast.add(scoreTracker, BorderLayout.NORTH);
@@ -165,9 +168,24 @@ public class GameView extends JFrame{
 	
 	}
 	
+	public void addGameListener(ActionListener listenButton) {
+		configureCenterPanel();
+		
+		for (int i=0;i<boardSize;i++) {
+			for(int i2=0;i2<boardSize;i2++) {
+				b[i][i2].addActionListener(listenButton);
+			}
+		}
+	}
+	
 	public void addResetListener(ActionListener listenButton) {
 		
 		resetButton.addActionListener(listenButton);
+	}
+	
+	public void addShowSolutionListener(ActionListener listenButton) {
+		
+		showSolution.addActionListener(listenButton);
 	}
 	
 	public int getSizeFromBox() {
@@ -213,16 +231,6 @@ public class GameView extends JFrame{
 			}
 		}
 	}
-
-	public void addGameListener(ActionListener listenButton) {
-		configureCenterPanel();
-		
-		for (int i=0;i<boardSize;i++) {
-			for(int i2=0;i2<boardSize;i2++) {
-				b[i][i2].addActionListener(listenButton);
-			}
-		}
-	}
 	
 	public JButton[][] getButtons(){
 		return b;
@@ -240,6 +248,20 @@ public class GameView extends JFrame{
 		this.add(westPanel, BorderLayout.WEST);
 		this.add(eastPanel, BorderLayout.EAST);
 		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	public void changeButtonColor(int x, int y, String col) {
+		
+		Color c = new Color(0, 0, 0);
+		
+		switch(col) {
+		
+		case "lGreen":
+			c = new Color(204,255,204);
+			break;
+		}
+		
+		b[x][y].setBackground(c);
 	}
 	
 	public void updateScore(boolean bool) {

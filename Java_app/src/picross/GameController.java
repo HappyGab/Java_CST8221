@@ -21,11 +21,13 @@ public class GameController  {
 		this.gameView.addGameListener(new GameListener());
 		this.gameView.addResetListener(new ResetListener());   
 		this.gameView.addTimerListener(new TimerListener());
+		this.gameView.addShowSolutionListener(new showSolutionListener());
 	}
 	
 	private void resetGame() {
 		
 		this.gameView.addGameListener(new GameListener());
+		this.gameView.addShowSolutionListener(new showSolutionListener());
 	}
 	
 	class GameListener implements ActionListener{
@@ -109,6 +111,29 @@ public class GameController  {
 			gameView.updateComponents();
 		}	
 	}	
+	
+	class showSolutionListener implements ActionListener{
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			JButton b[][] = gameView.getButtons();
+			String solution = gameModel.getGameValues();
+			int linearIndex = 0;
+			
+			for (int i=0;i<b.length;i++) {
+				for (int i2=0;i2<b[i].length;i2++) {
+					
+					if(solution.charAt(linearIndex) == '1') {
+						
+						gameView.changeButtonColor(i,i2,"lGreen");
+					}
+					linearIndex++;
+				}
+			}
+		}
+		
+	}
 		
 	class TimerListener implements ActionListener{
 

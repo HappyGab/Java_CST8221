@@ -261,7 +261,9 @@ public class GameView extends JFrame{
 			break;
 		}
 		
-		b[x][y].setBackground(c);
+		if(b[x][y].isEnabled()) {
+			b[x][y].setBackground(c);
+		}
 	}
 	
 	public void updateScore(boolean bool) {

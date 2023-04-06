@@ -85,7 +85,6 @@ public class GameController  {
     			}
             }
 			((JButton)e.getSource()).setEnabled(false);
-			
 		}
 	}
 	
@@ -132,7 +131,6 @@ public class GameController  {
 				}
 			}
 		}
-		
 	}
 		
 	class TimerListener implements ActionListener{

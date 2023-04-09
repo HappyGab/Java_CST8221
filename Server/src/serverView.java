@@ -58,6 +58,18 @@ public class serverView extends JFrame{
 		
 		controlPanel.append(text + "\n");
 	}
+	
+	public void toggleExecuteButton() {
+		
+		if(executeButton.isEnabled()) {
+			
+			executeButton.setEnabled(false);
+		}
+		else {
+			
+			executeButton.setEnabled(true);
+		}
+	}
 
 	public void addExecuteListener(ActionListener listenButton) {
 		

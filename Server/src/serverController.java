@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Scanner;
 
 public class serverController {
@@ -26,6 +27,8 @@ public class serverController {
 	
 	class executeListener implements ActionListener{
 
+		private Thread serverThread;
+	    
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
@@ -38,16 +41,30 @@ public class serverController {
 				e2.printStackTrace();
 				return;
 			}
-			try {
-				Socket clientSocket = server.accept();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				return;
-			}
 			
-			serverview.addToControlPanel("Client Conncted");
-		}
+			 serverThread = new Thread(new Runnable() {
+		            @Override
+		            public void run() {
+		                try {
+		                    Socket clientSocket = server.accept();
+		                    serverview.addToControlPanel("Client connected.");
+		                } 
+		            catch (SocketException se) {
+		                // The server socket was closed, so exit gracefully
+		                return;
+		            }catch (IOException e1) {
+		                    if (serverThread.isInterrupted()) {
+		                        return;
+		                    }
+		                    e1.printStackTrace();
+		                }
+		            }
+		        });
+	        serverThread.start();
+	
+	        serverview.toggleExecuteButton();
+	        serverview.addToControlPanel("Waiting for client connection.");
+		}		
 	}
 	
 	class showClientListener implements ActionListener{
@@ -69,8 +86,11 @@ public class serverController {
 			} catch (IOException e1) {
 				serverview.addToControlPanel("Server Termination Error");
 			}
+			
+	        serverview.addToControlPanel("Server Terminated.");
+	        serverview.toggleExecuteButton();	        
+			
 		}
-		
 	}
 }
 

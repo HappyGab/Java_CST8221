@@ -12,7 +12,7 @@ public class Server {
 		Scanner sc = new Scanner(System.in); 
 		
 		int port; 
-		String message = null; 
+		String message = ""; 
 		
 		System.out.println("Enter port: ");
 		
@@ -20,17 +20,26 @@ public class Server {
 		
 		 ServerSocket server = new ServerSocket(port);
 		 Socket clientSocket = server.accept();
+		 
+		 DataInputStream in = new DataInputStream(System.in);
 		 DataInputStream is = new DataInputStream(clientSocket.getInputStream());
 		 DataOutputStream os = new DataOutputStream(clientSocket.getOutputStream());
 		 
 	
 		 
 	
-	
-		 message =is.readLine(); 
-		 
-		 System.out.println("message from client: " + message);
+		 while(!message.equals("end")) {
+			 
 		
+			   
+			 message =is.readUTF(); 
+			 System.out.println("message from client: " + message);
+			
+			 
+			 
+		 }
+	
+		 
 	
 			 
 			 server.close(); 

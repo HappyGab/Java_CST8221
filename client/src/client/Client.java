@@ -16,6 +16,7 @@ public class Client extends Thread {
 		String server; 
 	    int port;
 	    String message = ""; 
+	   
 	    
 	    System.out.println("Enter server: ");
 	    server = sc.nextLine(); 
@@ -24,20 +25,30 @@ public class Client extends Thread {
 	    
 		Socket client = new Socket(server, port); 
 		
-		DataInputStream is = new DataInputStream(System.in);
+		DataInputStream in = new DataInputStream(System.in);
+		DataInputStream is = new DataInputStream(client.getInputStream());
 		DataOutputStream os = new DataOutputStream(client.getOutputStream());
 	
 		while(!message.equals("end")) {
 			
-			 // System.out.print("client: ");
-			  System.out.print("client: ");
-			  message = is.readLine(); 
-			   os.writeUTF(message);
-			   
+			 
+			  message = in.readLine();
+			  switch (message) {
+			  
+			  case "P0": 
+				  
+				  message = "end";
+				  System.out.println("client end");
+				  break;
+			  
+			  case "P1": 
+			  break; 
+			  case "P2":
+			break; 
 		}
-		
-	   
-		   
+	 
+		}
+	
 	   
 		
 	   client.close();

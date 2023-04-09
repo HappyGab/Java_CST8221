@@ -13,7 +13,6 @@ public class Server {
 		
 		int port; 
 		String message = ""; 
-		
 		System.out.println("Enter port: ");
 		
 		port = sc.nextInt(); 
@@ -30,13 +29,9 @@ public class Server {
 	
 		 while(!message.equals("end")) {
 			 
-		
-			   
 			 message =is.readUTF(); 
 			 System.out.println("message from client: " + message);
-			
-			 
-			 
+				 
 		 }
 	
 		 

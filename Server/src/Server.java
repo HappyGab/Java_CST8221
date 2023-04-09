@@ -9,6 +9,12 @@ public class Server {
 
 	public static void main(String[] args) throws IOException {
 		
+		serverView serverUI = new serverView();
+		serverModel servermodel = new serverModel();
+		serverController servercontroller = new serverController(serverUI, servermodel);
+		
+		serverUI.createServer();
+		/*
 		Scanner sc = new Scanner(System.in); 
 		
 		int port; 
@@ -38,6 +44,7 @@ public class Server {
 	
 			 
 			 server.close(); 
+			 */
 		 }
 		 
 		 

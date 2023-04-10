@@ -10,9 +10,9 @@ public class Server {
 
 	public static void main(String[] args) throws IOException {
 		
-		serverView serverUI = new serverView();
-		serverModel servermodel = new serverModel();
-		serverController servercontroller = new serverController(serverUI, servermodel);
+		ServerView serverUI = new ServerView();
+		ServerModel servermodel = new ServerModel();
+		ServerController servercontroller = new ServerController(serverUI, servermodel);
 		
 		serverUI.createServer();
 		

@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class serverModel {
+public class ServerModel {
 	ArrayList<String> gamesArr = new ArrayList<String>();
 
 }

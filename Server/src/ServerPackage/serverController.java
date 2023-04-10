@@ -11,16 +11,16 @@ import java.net.SocketException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class serverController {
+public class ServerController {
 
-	private serverView serverview;
-	private serverModel servermodel;
+	private ServerView serverview;
+	private ServerModel servermodel;
 	
 	private ServerSocket server = null;
 	
 	private Thread serverThread;
 	
-	public serverController(serverView serverview, serverModel servermodel) {
+	public ServerController(ServerView serverview, ServerModel servermodel) {
 		
 		this.serverview = serverview;
 		this.servermodel = servermodel;
@@ -65,12 +65,15 @@ public class serverController {
 		                            	serverview.addToControlPanel(data[0]+" disconnected.");
 				                    case "1": 
 				                    	servermodel.gamesArr.add(data[2]); 
+				                    	serverview.addToControlPanel("Game received.");
 				                    break;
 				                    case "2": 
 				                       Random rng = new Random(); 
-				                    
-				                    os.writeUTF(servermodel.gamesArr.get(rng.nextInt(servermodel.gamesArr.size())));
-				                   
+				                    if (servermodel.gamesArr.isEmpty() == true) {
+				                    	os.writeUTF(data[0]+"#No available game"); 
+				                    }else {
+				                    os.writeUTF(data[0]+"#"+servermodel.gamesArr.get(rng.nextInt(servermodel.gamesArr.size())));
+				                    }
 				                    	break;
 				                    }
 		                        }

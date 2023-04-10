@@ -23,6 +23,7 @@ public class GameController  {
 		this.gameView.addResetListener(new ResetListener());   
 		this.gameView.addTimerListener(new TimerListener());
 		this.gameView.addShowSolutionListener(new showSolutionListener());
+		this.clientMenu.addConnectListener(new connectListener());
 	}
 	
 	private void resetGame() {
@@ -165,6 +166,14 @@ public class GameController  {
 			dMinute = format.format(gameView.minutes);
 			gameView.timerLabel.setText("" + dMinute +":" + dSecond);
 		}
+	}
+	
+	class connectListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			
+		}
+	
 	}
 }
 

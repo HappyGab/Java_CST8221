@@ -2,8 +2,6 @@ package picross;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
-import java.util.Date;
  
 import javax.swing.*;
 import javax.swing.border.*;
@@ -44,8 +42,6 @@ public class clientMenuView extends JFrame{
 		
 		JPanel centerPanel = new JPanel();
 		
-		
-		
 		controlPanel.setEditable(false);
         JScrollPane controlPanelScrollBar = new JScrollPane(controlPanel);
         controlPanelScrollBar.setPreferredSize(new Dimension(750,200));
@@ -54,5 +50,10 @@ public class clientMenuView extends JFrame{
 		this.add(northPanel);
 		this.add(controlPanelScrollBar);
 		this.setVisible(true);
+	}
+	
+	public void addConnectListener(ActionListener listenButton) {
+		
+		connectButton.addActionListener(listenButton);
 	}
 }

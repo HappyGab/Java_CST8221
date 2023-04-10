@@ -26,6 +26,7 @@ public class GameController  {
 		this.gameView.addTimerListener(new TimerListener());
 		this.gameView.addShowSolutionListener(new showSolutionListener());
 		this.clientMenu.addConnectListener(new connectListener());
+		this.clientMenu.addDisonnectListener(new disconnectListener());
 	}
 	
 	private void resetGame() {
@@ -180,9 +181,15 @@ public class GameController  {
 				
 				e1.printStackTrace();
 			}
+		}
+	}
+	
+	class disconnectListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			
 			
 		}
-	
 	}
 }
 

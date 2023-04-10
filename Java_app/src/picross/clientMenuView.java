@@ -82,4 +82,9 @@ public class clientMenuView extends JFrame{
 		
 		connectButton.addActionListener(listenButton);
 	}
+	
+	public void addDisonnectListener(ActionListener listenButton) {
+		
+		disconnectButton.addActionListener(listenButton);
+	}
 }

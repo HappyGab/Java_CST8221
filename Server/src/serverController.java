@@ -48,6 +48,11 @@ public class serverController {
 		                try {
 		                    Socket clientSocket = server.accept();
 		                    serverview.addToControlPanel("Client connected.");
+		                    DataInputStream is = new DataInputStream(clientSocket.getInputStream());
+		                    DataOutputStream os = new DataOutputStream(clientSocket.getOutputStream());
+		                    
+		                    String user = is.readUTF(); 
+		                    serverview.addToControlPanel("User: " + user);
 		                } 
 		            catch (SocketException se) {
 		                // The server socket was closed, so exit gracefully
@@ -97,5 +102,7 @@ public class serverController {
 			
 		}
 	}
+	
+	
 }
 

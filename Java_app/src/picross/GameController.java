@@ -2,6 +2,8 @@ package picross;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.text.DecimalFormat;
@@ -27,6 +29,12 @@ public class GameController  {
 		this.gameView.addShowSolutionListener(new showSolutionListener());
 		this.clientMenu.addConnectListener(new connectListener());
 		this.clientMenu.addDisonnectListener(new disconnectListener());
+		
+		this.clientMenu.addNewGameListener(new NewGameListener());
+        this.clientMenu.addSendGameListener(new SendGameListener());
+        this.clientMenu.addGetGameListener(new GetGameListener());
+        this.clientMenu.addSendDataListener(new SendDataListener());
+        this.clientMenu.addPlayListener(new PlayListener());
 	}
 	
 	private void resetGame() {
@@ -176,7 +184,20 @@ public class GameController  {
 		public void actionPerformed(ActionEvent e) {
 			
 			try {
+				
 				Socket client = new Socket(clientMenu.getServerAddress(), clientMenu.getPort());
+				DataInputStream in = new DataInputStream(System.in);
+				DataInputStream is = new DataInputStream(client.getInputStream());
+				DataOutputStream os = new DataOutputStream(client.getOutputStream());
+			
+			    String user = clientMenu.getUserID(); 
+			    os.writeUTF(user);
+			    
+			    boolean exit = false;
+			    while(exit == false) {
+
+					  user = in.readUTF();
+			    }
 			} catch (IOException e1) {
 				
 				e1.printStackTrace();
@@ -191,5 +212,45 @@ public class GameController  {
 			
 		}
 	}
+	
+	class NewGameListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+    }
+
+    class SendGameListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+    }
+
+    class GetGameListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+    }
+
+    class SendDataListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+    }
+
+    class PlayListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e) {
+
+
+        }
+    }
 }
 

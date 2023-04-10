@@ -17,9 +17,6 @@ public class Client {
 	int port; 
 	Socket client; 
 	
-	
-	
-	
 	Client(String server, int port){
 		this.server = "localhost"; 
 		this.port = 12345;
@@ -28,15 +25,12 @@ public class Client {
 	
 	public void connect()  throws IOException{
 		
-    client = new Socket(server, port); 	
-  
+		client = new Socket(server, port); 	
 	}	
 	
 	public void disconnect() throws IOException {
 		
-		
 		client.close();
-		
 	}
 
 	public void action(JButton button) throws IOException {

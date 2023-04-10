@@ -7,4 +7,11 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="lib" path="lib"/>
+	<classpathentry kind="src" path="src/Server"/>
+	<classpathentry kind="src" path="src/Server/serverModel.java"/>
+	<classpathentry kind="src" path="src/Server/serverView.java"/>
+	<classpathentry kind="src" path="src/Server/serverController.java"/>
+
+
 </classpath>

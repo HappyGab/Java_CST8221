@@ -1,0 +1,42 @@
+src\ServerPackage\Server.java:9: warning: no comment
+public class Server {
+       ^
+src\ServerPackage\serverController.java:14: warning: no comment
+public class serverController {
+       ^
+src\ServerPackage\serverModel.java:11: warning: no comment
+public class serverModel {
+       ^
+src\ServerPackage\serverView.java:7: warning: no comment
+public class serverView extends JFrame{
+       ^
+src\ServerPackage\Server.java:11: warning: no comment
+	public static void main(String[] args) throws IOException {
+	                   ^
+src\ServerPackage\serverController.java:23: warning: no comment
+	public serverController(serverView serverview, serverModel servermodel) {
+	       ^
+src\ServerPackage\serverView.java:17: warning: no comment
+	public void createServer() {
+	            ^
+src\ServerPackage\serverView.java:47: warning: no comment
+	public int getPort() {
+	           ^
+src\ServerPackage\serverView.java:63: warning: no comment
+	public void addToControlPanel(String text) {
+	            ^
+src\ServerPackage\serverView.java:68: warning: no comment
+	public void toggleExecuteButton() {
+	            ^
+src\ServerPackage\serverView.java:80: warning: no comment
+	public void toggleCloseServerButton() {
+	            ^
+src\ServerPackage\serverView.java:92: warning: no comment
+	public void addExecuteListener(ActionListener listenButton) {
+	            ^
+src\ServerPackage\serverView.java:97: warning: no comment
+	public void addShowClientListener(ActionListener listenButton) {
+	            ^
+src\ServerPackage\serverView.java:102: warning: no comment
+	public void addCloseServerListener(ActionListener listenButton) {
+	            ^

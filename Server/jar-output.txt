@@ -1,0 +1,10 @@
+added manifest
+adding: ServerPackage/(in = 0) (out= 0)(stored 0%)
+adding: ServerPackage/Server.class(in = 852) (out= 464)(deflated 45%)
+adding: ServerPackage/serverController$closeServerListener.class(in = 1474) (out= 734)(deflated 50%)
+adding: ServerPackage/serverController$executeListener$1.class(in = 3266) (out= 1600)(deflated 51%)
+adding: ServerPackage/serverController$executeListener.class(in = 1963) (out= 915)(deflated 53%)
+adding: ServerPackage/serverController$showClientListener.class(in = 723) (out= 382)(deflated 47%)
+adding: ServerPackage/serverController.class(in = 1926) (out= 748)(deflated 61%)
+adding: ServerPackage/serverModel.class(in = 452) (out= 300)(deflated 33%)
+adding: ServerPackage/serverView.class(in = 3531) (out= 1818)(deflated 48%)

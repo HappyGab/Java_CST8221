@@ -1,0 +1,47 @@
+warning: [path] Invalid filename: src              		 	
+warning: [path] Invalid filename: lib               			/*
+src\Picross\Picross.java:20: error: cannot find symbol
+		GameModel gameModel = new GameModel();
+		^
+  symbol:   class GameModel
+  location: class Picross
+src\Picross\Picross.java:20: error: cannot find symbol
+		GameModel gameModel = new GameModel();
+		                          ^
+  symbol:   class GameModel
+  location: class Picross
+src\Picross\Picross.java:21: error: cannot find symbol
+		GameView gameView = new GameView();
+		^
+  symbol:   class GameView
+  location: class Picross
+src\Picross\Picross.java:21: error: cannot find symbol
+		GameView gameView = new GameView();
+		                        ^
+  symbol:   class GameView
+  location: class Picross
+src\Picross\Picross.java:22: error: cannot find symbol
+		clientMenuView clientMenu = new clientMenuView();
+		^
+  symbol:   class clientMenuView
+  location: class Picross
+src\Picross\Picross.java:22: error: cannot find symbol
+		clientMenuView clientMenu = new clientMenuView();
+		                                ^
+  symbol:   class clientMenuView
+  location: class Picross
+src\Picross\Picross.java:24: error: cannot find symbol
+		GameController gameController = new GameController(gameModel, gameView, clientMenu);
+		^
+  symbol:   class GameController
+  location: class Picross
+src\Picross\Picross.java:24: error: cannot find symbol
+		GameController gameController = new GameController(gameModel, gameView, clientMenu);
+		                                    ^
+  symbol:   class GameController
+  location: class Picross
+src\Picross\Picross.java:16: warning: [serial] serializable class Picross has no definition of serialVersionUID
+public class Picross extends JFrame{
+       ^
+8 errors
+3 warnings

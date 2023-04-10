@@ -1,0 +1,34 @@
+warning: [path] Invalid filename: src              		 	
+warning: [path] Invalid filename: lib               			/*
+src\ServerPackage\Server.java:13: error: cannot find symbol
+		serverView serverUI = new serverView();
+		^
+  symbol:   class serverView
+  location: class Server
+src\ServerPackage\Server.java:13: error: cannot find symbol
+		serverView serverUI = new serverView();
+		                          ^
+  symbol:   class serverView
+  location: class Server
+src\ServerPackage\Server.java:14: error: cannot find symbol
+		serverModel servermodel = new serverModel();
+		^
+  symbol:   class serverModel
+  location: class Server
+src\ServerPackage\Server.java:14: error: cannot find symbol
+		serverModel servermodel = new serverModel();
+		                              ^
+  symbol:   class serverModel
+  location: class Server
+src\ServerPackage\Server.java:15: error: cannot find symbol
+		serverController servercontroller = new serverController(serverUI, servermodel);
+		^
+  symbol:   class serverController
+  location: class Server
+src\ServerPackage\Server.java:15: error: cannot find symbol
+		serverController servercontroller = new serverController(serverUI, servermodel);
+		                                        ^
+  symbol:   class serverController
+  location: class Server
+6 errors
+2 warnings

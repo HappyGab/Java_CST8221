@@ -66,6 +66,21 @@ public class clientMenuView extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public void toggleVisible() {
+		
+		if(this.isVisible() == true) {
+			this.setVisible(false);
+		}
+		else {
+			this.setVisible(true);
+		}
+	}
+	
+	public void addToControlPanel(String text) {
+		
+		controlPanel.append(text + "\n");
+	}
+	
 	public String getUserID() {
 		
 		return userID.getText();

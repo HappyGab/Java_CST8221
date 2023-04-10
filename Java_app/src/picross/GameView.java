@@ -18,6 +18,7 @@ public class GameView extends JFrame{
 	private static JPanel centerPanel = new JPanel();
 	
 	private static JMenuBar menuBar = new JMenuBar();
+	private static JMenuItem item1 = new JMenuItem("Open Server Options Menu");
 	
 	private static Border labelBorder = BorderFactory.createLineBorder(Color.black);
 	private static JTextArea controlPanel = new JTextArea();
@@ -48,15 +49,7 @@ public class GameView extends JFrame{
     	
     	JMenu serverOptions = new JMenu("Server Options");
     	
-    	JMenuItem item1, item2, item3;
-    	
-    	item1 = new JMenuItem("Option 1");
-    	item2 = new JMenuItem("Option 2");
-    	item3 = new JMenuItem("Option 3");
-    	
     	serverOptions.add(item1);
-    	serverOptions.add(item2);
-    	serverOptions.add(item3);
     	
     	menuBar.add(serverOptions);
     	
@@ -207,6 +200,11 @@ public class GameView extends JFrame{
 	public void addShowSolutionListener(ActionListener listenButton) {
 		
 		showSolution.addActionListener(listenButton);
+	}
+	
+	public void addShowServerOptionsListener(ActionListener listenButton) {
+		
+		item1.addActionListener(listenButton);
 	}
 	
 	public int getSizeFromBox() {
@@ -360,8 +358,16 @@ public class GameView extends JFrame{
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Picross");
-		this.setVisible(true);
 		
+	}
+	
+	public boolean getFirstGame() {
+		
+		return firstGame;
+	}
+	
+	public void thisVisible() {
+		this.setVisible(true);
 	}
 	
 	public void addTimerListener(ActionListener listener) {

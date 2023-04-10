@@ -31,9 +31,10 @@ public class GameController  {
 		this.gameView.addResetListener(new ResetListener());   
 		this.gameView.addTimerListener(new TimerListener());
 		this.gameView.addShowSolutionListener(new showSolutionListener());
-		this.clientMenu.addConnectListener(new connectListener());
-		this.clientMenu.addDisonnectListener(new disconnectListener());
+		this.gameView.addShowServerOptionsListener(new showServerOptions());
 		
+		this.clientMenu.addConnectListener(new connectListener());
+		this.clientMenu.addDisonnectListener(new disconnectListener());		
 		this.clientMenu.addNewGameListener(new NewGameListener());
         this.clientMenu.addSendGameListener(new SendGameListener());
         this.clientMenu.addGetGameListener(new GetGameListener());
@@ -160,6 +161,14 @@ public class GameController  {
 			gameView.addToControlPanel("Solution revealed");
 		}
 	}
+	
+	class showServerOptions implements ActionListener{
+
+        public void actionPerformed(ActionEvent e) {
+
+        	clientMenu.toggleVisible();
+        }
+    }
 		
 	class TimerListener implements ActionListener{
 
@@ -189,17 +198,12 @@ public class GameController  {
 			
 			try {
 				
-			 client = new Socket(clientMenu.getServerAddress(), clientMenu.getPort());
-			    is = new DataInputStream(client.getInputStream());
-				os = new DataOutputStream(client.getOutputStream());
-			
-			    String user = clientMenu.getUserID(); 
-			    os.writeUTF(user);
-			    
-			  
-			
-
-					  user = in.readUTF();
+			client = new Socket(clientMenu.getServerAddress(), clientMenu.getPort());
+		    is = new DataInputStream(client.getInputStream());
+			os = new DataOutputStream(client.getOutputStream());
+		
+		    String user = clientMenu.getUserID(); 
+		    os.writeUTF(user);
 			  
 			} catch (IOException e1) {
 				
@@ -220,7 +224,26 @@ public class GameController  {
 
         public void actionPerformed(ActionEvent e) {
 
-
+        	if(gameView.getFirstGame() == true) {
+        		gameView.createGame();
+        	}
+        	
+        	int size = gameView.getSizeFromBox();
+			gameView.setboardSize(size);
+			gameModel.setBoardSize(size);
+			gameView.configureCenterPanel();
+			gameView.configureNorthPanel(); 
+			gameView.configureWestPanel();
+			gameModel.randomGame();
+			gameView.timerLabel.setText("00:00");
+			String[] newSideLabels = gameModel.sideLabelValues();
+			String[][] newTopLabels = gameModel.topLabelValues();
+			gameView.setLabelValues(newSideLabels, newTopLabels);
+			gameView.resetScore();
+			resetGame();
+			gameView.updateComponents();
+			
+			clientMenu.addToControlPanel("New Random Game Generated");
         }
     }
 
@@ -252,7 +275,11 @@ public class GameController  {
 
         public void actionPerformed(ActionEvent e) {
 
-
+        	if(gameView.getFirstGame() == true) {
+        		gameView.createGame();
+        	}
+        	gameView.thisVisible();
+        	clientMenu.toggleVisible();
         }
     }
 }

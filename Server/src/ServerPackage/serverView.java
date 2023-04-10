@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class erverView extends JFrame{
+public class ServerView extends JFrame{
 
 	private static JButton executeButton = new JButton("Execute");
 	private static JButton showClientsButton = new JButton("Show Clients");

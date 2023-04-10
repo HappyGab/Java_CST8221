@@ -52,6 +52,32 @@ public class clientMenuView extends JFrame{
 		this.setVisible(true);
 	}
 	
+	public String getUserID() {
+		
+		return userID.getText();
+	}
+	
+	public int getPort() {
+		
+		String portStr = portNum.getText();
+		
+		int port = 0;
+		
+		try {
+			port = Integer.parseInt(portStr);
+		}
+		catch(Exception e) {
+			controlPanel.append("Port needs to be a integer\n");
+		}
+		
+		return port;
+	}
+	
+	public String getServerAddress() {
+		
+		return serverIP.getText();
+	}
+	
 	public void addConnectListener(ActionListener listenButton) {
 		
 		connectButton.addActionListener(listenButton);

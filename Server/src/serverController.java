@@ -46,23 +46,25 @@ public class serverController {
 		            @Override
 		            public void run() {
 		                try {
-		                    Socket clientSocket = server.accept();
-		                    serverview.addToControlPanel("Client connected.");
-		                    DataInputStream is = new DataInputStream(clientSocket.getInputStream());
-		                    DataOutputStream os = new DataOutputStream(clientSocket.getOutputStream());
-		                    
-		                    String protocal = is.readUTF(); 
-		                    
-		                    String[] data = protocal.split("#"); 
-		                   
-		                    switch (data[0]) {
-		                    
-		                    case "P1": 
-		                    	 serverview.addToControlPanel("got it");
-		                    break;
-		                    
+		                	while (true) { 
+		                        Socket clientSocket = server.accept();
+		                        serverview.addToControlPanel("Client connected.");
+		                        DataInputStream is = new DataInputStream(clientSocket.getInputStream());
+		                        DataOutputStream os = new DataOutputStream(clientSocket.getOutputStream());
+
+		                        while (true) { 
+		                            String protocal = is.readUTF(); 
+
+		                            String[] data = protocal.split("#"); 
+
+		                            switch (data[0]) {
+		                                case "P1": 
+		                                    serverview.addToControlPanel("got it");
+		                                    break;
+		                            }
+		                        }
 		                    }
-		                } 
+		                }
 		            catch (SocketException se) {
 		                // The server socket was closed, so exit gracefully
 		                return;

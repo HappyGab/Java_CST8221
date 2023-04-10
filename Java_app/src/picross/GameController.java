@@ -11,12 +11,13 @@ public class GameController  {
 
 	GameModel gameModel;
 	GameView gameView;
+	clientMenuView clientMenu;
 	
-	
-	public GameController(GameModel gameModel, GameView gameView) {
+	public GameController(GameModel gameModel, GameView gameView, clientMenuView clientMenu) {
 		
 		this.gameModel = gameModel;
 		this.gameView = gameView;
+		this.clientMenu = clientMenu;
 		
 		this.gameView.addGameListener(new GameListener());
 		this.gameView.addResetListener(new ResetListener());   

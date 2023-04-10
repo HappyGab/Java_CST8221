@@ -19,10 +19,12 @@ public class Picross extends JFrame{
 		
 		GameModel gameModel = new GameModel();
 		GameView gameView = new GameView();
-		GameController gameController = new GameController(gameModel, gameView);
+		clientMenuView clientMenu = new clientMenuView();
+		
+		GameController gameController = new GameController(gameModel, gameView, clientMenu);
 		
 		gameView.createGame();
+		clientMenu.createMenu();
 		
 	}
 }
-//

@@ -359,7 +359,7 @@ public class GameView extends JFrame{
 		this.setSize(750,575);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.setTitle("Picross");
 		this.setVisible(true);
 		
 	}

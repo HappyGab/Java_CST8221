@@ -18,7 +18,7 @@ public class serverView extends JFrame{
 		this.setSize(750,300);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Picross Server");
+		this.setTitle("Server Options");
 		this.setLayout(new BorderLayout(10,10));
 		
 		JPanel top = new JPanel();

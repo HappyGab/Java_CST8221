@@ -16,6 +16,10 @@ public class GameController  {
 	GameModel gameModel;
 	GameView gameView;
 	clientMenuView clientMenu;
+	Socket client; 
+	DataInputStream in = new DataInputStream(System.in);
+	DataInputStream is ;
+	DataOutputStream os;
 	
 	public GameController(GameModel gameModel, GameView gameView, clientMenuView clientMenu) {
 		
@@ -185,19 +189,18 @@ public class GameController  {
 			
 			try {
 				
-				Socket client = new Socket(clientMenu.getServerAddress(), clientMenu.getPort());
-				DataInputStream in = new DataInputStream(System.in);
-				DataInputStream is = new DataInputStream(client.getInputStream());
-				DataOutputStream os = new DataOutputStream(client.getOutputStream());
+			 client = new Socket(clientMenu.getServerAddress(), clientMenu.getPort());
+			    is = new DataInputStream(client.getInputStream());
+				os = new DataOutputStream(client.getOutputStream());
 			
 			    String user = clientMenu.getUserID(); 
 			    os.writeUTF(user);
 			    
-			    boolean exit = false;
-			    while(exit == false) {
+			  
+			
 
 					  user = in.readUTF();
-			    }
+			  
 			} catch (IOException e1) {
 				
 				e1.printStackTrace();

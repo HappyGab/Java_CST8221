@@ -2,6 +2,8 @@ package picross;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.Socket;
 import java.text.DecimalFormat;
 
 //hello 
@@ -171,6 +173,13 @@ public class GameController  {
 	class connectListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
+			
+			try {
+				Socket client = new Socket(clientMenu.getServerAddress(), clientMenu.getPort());
+			} catch (IOException e1) {
+				
+				e1.printStackTrace();
+			}
 			
 		}
 	

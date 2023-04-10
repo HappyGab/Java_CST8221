@@ -202,8 +202,7 @@ public class GameController  {
 		    is = new DataInputStream(client.getInputStream());
 			os = new DataOutputStream(client.getOutputStream());
 		
-		    String user = clientMenu.getUserID(); 
-		    os.writeUTF(user);
+		   
 			  
 			} catch (IOException e1) {
 				
@@ -215,7 +214,12 @@ public class GameController  {
 	class disconnectListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
-			
+			try {
+				client.close();
+				clientMenu.addToControlPanel("client disconnected");		} catch (IOException e1) {
+
+				e1.printStackTrace();
+			}	
 			
 		}
 	}
@@ -252,6 +256,14 @@ public class GameController  {
         public void actionPerformed(ActionEvent e) {
 
 
+        	String protocal;
+        	protocal = "P1#" + gameModel.getGameValues(); 
+        	try {
+				os.writeUTF(protocal);
+			} catch (IOException e1) {
+				
+				e1.printStackTrace();
+			}
         }
     }
 

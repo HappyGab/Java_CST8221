@@ -51,8 +51,17 @@ public class serverController {
 		                    DataInputStream is = new DataInputStream(clientSocket.getInputStream());
 		                    DataOutputStream os = new DataOutputStream(clientSocket.getOutputStream());
 		                    
-		                    String user = is.readUTF(); 
-		                    serverview.addToControlPanel("User: " + user);
+		                    String protocal = is.readUTF(); 
+		                    
+		                    String[] data = protocal.split("#"); 
+		                   
+		                    switch (data[0]) {
+		                    
+		                    case "P1": 
+		                    	 serverview.addToControlPanel("got it");
+		                    break;
+		                    
+		                    }
 		                } 
 		            catch (SocketException se) {
 		                // The server socket was closed, so exit gracefully

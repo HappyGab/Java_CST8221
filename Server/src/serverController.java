@@ -15,6 +15,8 @@ public class serverController {
 	
 	private ServerSocket server = null;
 	
+	private Thread serverThread;
+	
 	public serverController(serverView serverview, serverModel servermodel) {
 		
 		this.serverview = serverview;
@@ -26,8 +28,6 @@ public class serverController {
 	}
 	
 	class executeListener implements ActionListener{
-
-		private Thread serverThread;
 	    
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -63,6 +63,7 @@ public class serverController {
 	        serverThread.start();
 	
 	        serverview.toggleExecuteButton();
+	        serverview.toggleCloseServerButton();
 	        serverview.addToControlPanel("Waiting for client connection.");
 		}		
 	}
@@ -87,8 +88,12 @@ public class serverController {
 				serverview.addToControlPanel("Server Termination Error");
 			}
 			
+			if(serverThread != null) {
+				serverThread.interrupt();
+			}
 	        serverview.addToControlPanel("Server Terminated.");
-	        serverview.toggleExecuteButton();	        
+	        serverview.toggleExecuteButton();	
+	        serverview.toggleCloseServerButton();        
 			
 		}
 	}

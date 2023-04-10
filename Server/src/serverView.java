@@ -31,10 +31,15 @@ public class serverView extends JFrame{
 		top.add(executeButton);
 		top.add(showClientsButton);
 		top.add(closeServerButton);
+		closeServerButton.setEnabled(false);
 		
-		controlPanel.setPreferredSize(new Dimension(750,200));
+		controlPanel.setEditable(false);
+        JScrollPane controlPanelScrollBar = new JScrollPane(controlPanel);
+        controlPanelScrollBar.setPreferredSize(new Dimension(750,200));
+        controlPanelScrollBar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		
 		this.add(top, BorderLayout.CENTER);
-		this.add(controlPanel, BorderLayout.SOUTH);
+		this.add(controlPanelScrollBar, BorderLayout.SOUTH);
 		this.setVisible(true);
 	}
 	
@@ -68,6 +73,18 @@ public class serverView extends JFrame{
 		else {
 			
 			executeButton.setEnabled(true);
+		}
+	}
+	
+	public void toggleCloseServerButton() {
+		
+		if(closeServerButton.isEnabled()) {
+			
+			closeServerButton.setEnabled(false);
+		}
+		else {
+			
+			closeServerButton.setEnabled(true);
 		}
 	}
 

@@ -1,4 +1,5 @@
 package ServerPackage;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.DataInputStream;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class serverController {
@@ -56,13 +58,21 @@ public class serverController {
 		                        while (true) { 
 		                            String protocal = is.readUTF(); 
 
-		                            String[] data = protocal.split("#"); 
+		                            String[] data = protocal.split("_"); 
 
-		                            switch (data[0]) {
-		                                case "P1": 
-		                                    serverview.addToControlPanel("got it");
-		                                    break;
-		                            }
+		                            switch (data[1]) {
+		                            case "0":
+		                            	serverview.addToControlPanel(data[0]+" disconnected.");
+				                    case "1": 
+				                    	servermodel.gamesArr.add(data[2]); 
+				                    break;
+				                    case "2": 
+				                       Random rng = new Random(); 
+				                    
+				                    os.writeUTF(servermodel.gamesArr.get(rng.nextInt(servermodel.gamesArr.size())));
+				                   
+				                    	break;
+				                    }
 		                        }
 		                    }
 		                }

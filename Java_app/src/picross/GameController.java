@@ -215,6 +215,9 @@ public class GameController  {
 
 		public void actionPerformed(ActionEvent e) {
 			try {
+				String protocal;
+	        	protocal =clientMenu.getUserID()+"_0";
+	            os.writeUTF(protocal);
 				client.close();
 				clientMenu.addToControlPanel("client disconnected");		} catch (IOException e1) {
 
@@ -257,7 +260,7 @@ public class GameController  {
 
 
         	String protocal;
-        	protocal = "P1#" + gameModel.getGameValues(); 
+        	protocal =clientMenu.getUserID()+"_1_" + gameModel.getGameValues(); 
         	try {
 				os.writeUTF(protocal);
 			} catch (IOException e1) {
@@ -271,7 +274,20 @@ public class GameController  {
 
         public void actionPerformed(ActionEvent e) {
 
-
+        	String protocal, replay ;
+        	protocal =clientMenu.getUserID()+"_2";
+        	try {
+				os.writeUTF(protocal);
+			
+				replay= is.readLine(); 
+				String[] data = protocal.split("_"); 
+				clientMenu.addToControlPanel(data[1]);
+			   
+			} catch (IOException e1) {
+				
+				e1.printStackTrace();
+			}
+        	
         }
     }
 
